@@ -18,6 +18,10 @@ What is the current situation in the Netherlands?
 Through visualizing all the different aspects around the Collony Collapse Disorder and the bee decline
 (in the Netherlands), it will become easier to comprehend the situation and to see if regulation is needed.  
 
+  #### Target Audience
+  Beekeepers, farmers, gardeners, honey-lovers, environmentalists, bee-lovers, nature-lovers, and everyone else who is interested in       the wellbeing of the earth.
+
+  ### Visual Sketch
 <img src="https://github.com/sabbiD/DataProject/blob/master/doc/blankpage.jpg"/>
 
   ### Functionalities:
@@ -55,8 +59,14 @@ Through visualizing all the different aspects around the Collony Collapse Disord
   ### Similar visualizations:
   
   - [Fertiziler and pesticide use around the world](https://ourworldindata.org/fertilizer-and-pesticides)
+  This visualizations shows a lot of different graphs concerning pesticide and fertilizer use around the world.
+  I would like to make a similar type of line graph and a map as in this visualization. 
   - [Nightingale's rose](http://bl.ocks.org/kgryte/5926740)
+  A basic example of a nightingale's rose chart.
+  I would like to make a similar rose chart.
   - [Donut Chart](https://datavizcatalogue.com/methods/donut_chart.html)
+  A basic example of a donut chart.
+  
   
 
   ### Difficulties:
@@ -65,4 +75,5 @@ Through visualizing all the different aspects around the Collony Collapse Disord
 - Being able to explain the story through the visualization without having to use text.
 - Correctly implementing the nightingale's rose chart.
 - Designing an aesthetically pleasing webpage.
+- Smooth transitioning for graphs and charts.
 
