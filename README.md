@@ -4,7 +4,7 @@
 
 ## Introduction
 
-It has been over a decade that we first heard about the decline of bees. Collony collapse disorder (CCD)
+It has been over a decade that we first heard about the decline of bees. Collony collapse disorder (CCD) (in Dutch: bijenverdwijnziekte)
 seems to be the reason but what are the causes for this disorder? And what is the effect of this decline in bees?
 What is the current situation in the Netherlands?
 
