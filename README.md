@@ -37,9 +37,9 @@ Functionalities:
 
 
   ### Data sources:
-  - [Land/ soil use from CBS] (http://statline.cbs.nl/Statweb/publication/?DM=SLNL&PA=80780NED&D1=0%2c2-7%2c13-18%2c24%2c50%2c90%2c116%2c156%2c159%2c226%2c321%2c327%2c332%2c364%2c383-384%2c388%2c400-403%2c406%2c409%2c418%2c427%2c444%2c459%2c504%2c512%2c519%2c526%2c538&D2=0&D3=0%2c5%2c10%2c15-16&HDR=G1%2cG2&STB=T&VW=T)
+  - [Land/ soil use from CBS](http://statline.cbs.nl/Statweb/publication/?DM=SLNL&PA=80780NED&D1=0%2c2-7%2c13-18%2c24%2c50%2c90%2c116%2c156%2c159%2c226%2c321%2c327%2c332%2c364%2c383-384%2c388%2c400-403%2c406%2c409%2c418%2c427%2c444%2c459%2c504%2c512%2c519%2c526%2c538&D2=0&D3=0%2c5%2c10%2c15-16&HDR=G1%2cG2&STB=T&VW=T)
   - [Pesticide use from CBS](http://www.clo.nl/indicatoren/nl0015-afzet-gewasbeschermingsmiddelen-in-de-land--en-tuinbouw?i=11-61)
-  - [Winter bee deaths from CBS] (http://www.clo.nl/indicatoren/nl0572-oorzaken-bijensterfte)
+  - [Winter bee deaths from CBS](http://www.clo.nl/indicatoren/nl0572-oorzaken-bijensterfte)
 
   ### External components:
   - d3-tip
@@ -48,7 +48,7 @@ Functionalities:
   - Probably more to come...
 
   ### Similar visualizations:
-  - [Fertiziler and pesticide use around the world] (https://ourworldindata.org/fertilizer-and-pesticides)
+  - [Fertiziler and pesticide use around the world](https://ourworldindata.org/fertilizer-and-pesticides)
   - [Nightingale's rose](http://bl.ocks.org/kgryte/5926740)
   - [Donut Chart](https://datavizcatalogue.com/methods/donut_chart.html)
   
