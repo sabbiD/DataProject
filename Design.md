@@ -20,7 +20,6 @@ Except for the TopoJSON file, all the other files will be converted to Json-file
 
 
 | Function name   | Description  | File name  |
-|:---:|:---:|:---:|
 | ***General functions***  |   |   |
 |   |   |   |   
 | updateMap  |   |   | 
@@ -30,7 +29,6 @@ Except for the TopoJSON file, all the other files will be converted to Json-file
 
 
 | Function name   | Description  | File name  |
-|:---:|:---:|:---:|
 | ***Event listeners***  |   |   |
 | onClick  | When clicked on part in Rose chart calls donut chart with corresponding information. | Rose.js  |   
 | onHover  | When hovered over region in the map shows tooltip with corresponding information. | map.js  | 
@@ -40,8 +38,7 @@ Except for the TopoJSON file, all the other files will be converted to Json-file
 
 
 | Function name   | Description  | File name  |
-|:---:|:---:|:---:|
-| ***Map***  |   |   |
+| ***Map***  | 
 | createMap  |   |   |   
 | updateMap  |   |   | 
 |   |   |   | 
