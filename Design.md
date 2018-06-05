@@ -20,12 +20,16 @@ Except for the TopoJSON file, all the other files will be converted to Json-file
 
 ### Functions and operations
 
+
+
 | Function name   | Description  | File name  |
 |-------------|-------------|-------------|
 | ***General functions***  |   |   |
 | getAllData  | Retrieves all data that will be necessary for visualizations.  | index.js  |
 
-Table 1. General functions
+##### Table 1. General functions
+
+
 
 | Function name   | Description  | File name  |
 |-------------|-------------|-------------|
@@ -35,7 +39,9 @@ Table 1. General functions
 | onSlide  | When slider is used calls update functions for map and Rose chart. | index.js  | 
 | onSelect | When choice in the dropdown menu is selected calls update function for bar chart with corresponding information. | bar.js  |
 
-Table 2. Event listeners
+##### Table 2. Event listeners
+
+
 
 | Function name   | Description  | File name  |
 |-------------|-------------|-------------|
@@ -59,10 +65,12 @@ Table 2. Event listeners
 | createDonut  | Draw donut chart with data for the default chosen year.  | donut.js  |
 | updateDonut  | Update donut chart when slider is used for corresponding year.  | donut.js  |
 
-Table 3. Visualization functions
+##### Table 3. Visualization functions
 
 
-#### Operations
+
+
+#### Flow of operations
 
 The main functions will be run from index.js, libraries and scripts will be imported in index.html. The lay-out of the webpage is constructed with vis.css and a bootstrap theme is used.
 
