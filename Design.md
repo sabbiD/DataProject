@@ -1,7 +1,6 @@
 # Design Document
 
 ## Data sources:  
-<br><br>
 
 - Data about the land use in the Netherlands (2000 - 2017) from the CBS: [Link](http://statline.cbs.nl/Statweb/publication/?DM=SLNL&PA=80780NED&D1=0%2c2-7%2c13-18%2c24%2c50%2c90%2c116%2c156%2c159%2c226%2c321%2c327%2c332%2c364%2c383-384%2c388%2c400-403%2c406%2c409%2c418%2c427%2c444%2c459%2c504%2c512%2c519%2c526%2c538&D2=0&D3=0%2c5%2c10%2c15-16&HDR=G1%2cG2&STB=T&VW=T)  
 This data will be used for the map of the Netherlands and in the multi-line graph. 
@@ -18,13 +17,9 @@ This data will be used in the donut chart to display the use of specific pestici
 
 
 Except for the TopoJSON file, all the other files will be converted to Json-files.
-
 <br><br>
 <br><br>
-<br><br>
-
 ### Functions and operations  
-<br><br>
 <br><br>
 <br><br>
 
@@ -34,7 +29,6 @@ Except for the TopoJSON file, all the other files will be converted to Json-file
 | getAllData  | Retrieves all data that will be necessary for visualizations.  | index.js  |
 
 ##### Table 1. General functions  
-<br><br>
 <br><br>
 <br><br>
 
@@ -48,7 +42,6 @@ Except for the TopoJSON file, all the other files will be converted to Json-file
 
 ##### Table 2. Event listeners  
 
-<br><br>
 <br><br>
 <br><br>
 
@@ -78,14 +71,12 @@ Except for the TopoJSON file, all the other files will be converted to Json-file
 
 <br><br>
 <br><br>
-<br><br>
 
 
 #### Flow of operations
 
 The main functions will be run from index.js, libraries and scripts will be imported in index.html. The lay-out of the webpage is constructed with vis.css and a bootstrap theme is used.
 
-<br><br>
 <br><br>
 <br><br>
 
@@ -102,7 +93,6 @@ The main functions will be run from index.js, libraries and scripts will be impo
 - d3.colorBar
 - d3.geoProjection
 
-<br><br>
 <br><br>
 <br><br>
 
