@@ -11,16 +11,14 @@ This data will be used in the multi-line graph.
 - Data about the winter bee deaths in the US (2008 - 2017) from the Bee Informed Partnership: [Link](https://bip2.beeinformed.org/survey/)  This data will be used in the bar chart to compare the situation in the Netherlands with the situation in the US.
 - Data about the use of pesticides in the Netherlands (1985 - 2015) from the CLO: [Link](http://www.clo.nl/indicatoren/nl0015-afzet-gewasbeschermingsmiddelen-in-de-land--en-tuinbouw?i=11-61)  
 This data will be used in the Nightingale's Rose chart to display the use of pesticides in a specific year.
-- Data about the use of specific types pesticides in the Netherlands (1995 - 2012) from the CLo: [Link](http://www.clo.nl/indicatoren/nl0560-gebruik-gewasbeschermingsmiddelen-in-land--en-tuinbouw-per-actieve-stof)  
+- Data about the use of specific types pesticides in the Netherlands (1995 - 2012) from the CLO: [Link](http://www.clo.nl/indicatoren/nl0560-gebruik-gewasbeschermingsmiddelen-in-land--en-tuinbouw-per-actieve-stof)  
 This data will be used in the donut chart to display the use of specific pesticides that are harmfull to the health of the bees.
 - TopoJSON for the Netherlands to make a map: [Link](http://bl.ocks.org/phil-pedruco/9344373)
 
 
 Except for the TopoJSON file, all the other files will be converted to Json-files.
 <br><br>
-<br><br>
 ### Functions and operations  
-<br><br>
 <br><br>
 
 | Function name   | Description  | File name  |
@@ -29,7 +27,6 @@ Except for the TopoJSON file, all the other files will be converted to Json-file
 | getAllData  | Retrieves all data that will be necessary for visualizations.  | index.js  |
 
 ##### Table 1. General functions  
-<br><br>
 <br><br>
 
 | Function name   | Description  | File name  |
@@ -41,8 +38,6 @@ Except for the TopoJSON file, all the other files will be converted to Json-file
 | onSelect | When choice in the dropdown menu is selected calls update function for bar chart with corresponding information. | bar.js  |  
 
 ##### Table 2. Event listeners  
-
-<br><br>
 <br><br>
 
 | Function name   | Description  | File name  |
@@ -68,8 +63,6 @@ Except for the TopoJSON file, all the other files will be converted to Json-file
 | updateDonut  | Update donut chart when slider is used for corresponding year.  | donut.js  |
 
 ##### Table 3. Visualization functions
-
-<br><br>
 <br><br>
 
 
@@ -77,7 +70,6 @@ Except for the TopoJSON file, all the other files will be converted to Json-file
 
 The main functions will be run from index.js, libraries and scripts will be imported in index.html. The lay-out of the webpage is constructed with vis.css and a bootstrap theme is used.
 
-<br><br>
 <br><br>
 
 ### D3 plugins
@@ -93,7 +85,6 @@ The main functions will be run from index.js, libraries and scripts will be impo
 - d3.colorBar
 - d3.geoProjection
 
-<br><br>
 <br><br>
 
 ### D3 Libraries
