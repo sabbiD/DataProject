@@ -38,7 +38,7 @@ Except for the TopoJSON file, all the other files will be converted to Json-file
 
 
 | Function name   | Description  | File name  |
-| ***Map***  | 
+| ***Map***  | | |
 | createMap  |   |   |   
 | updateMap  |   |   | 
 |   |   |   | 
