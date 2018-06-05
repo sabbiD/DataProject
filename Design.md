@@ -22,11 +22,7 @@ Except for the TopoJSON file, all the other files will be converted to Json-file
 | Function name   | Description  | File name  |
 |-------------|-------------|-------------|
 | ***General functions***  |   |   |
-|   |   |   |   
-| updateMap  |   |   | 
-|   |   |   | 
-|   |   |   |
-|   |   |   |  
+| getAllData  | Retrieves all data that will be necessary for visualizations.  | index.js  |
 
 
 | Function name   | Description  | File name  |
@@ -34,35 +30,44 @@ Except for the TopoJSON file, all the other files will be converted to Json-file
 | ***Event listeners***  |   |   |
 | onClick  | When clicked on part in Rose chart calls donut chart with corresponding information. | Rose.js  |   
 | onHover  | When hovered over region in the map shows tooltip with corresponding information. | map.js  | 
-| onSlide  | When slider is used calls update functions for map and Rose chart. | map.js and Rose.js OR main.js  | 
+| onSlide  | When slider is used calls update functions for map and Rose chart. | index.js  | 
 | onSelect | When choice in the dropdown menu is selected calls update function for bar chart with corresponding information. | bar.js  |
-|   |   |   |  
 
 
 | Function name   | Description  | File name  |
 |-------------|-------------|-------------|
 | ***Map***  | | |
-| createMap  |   |   |   
-| updateMap  |   |   | 
-|   |   |   | 
-|   |   |   |
-|   |   |   |  
+| createMap  | Draws map of the Netherlands using TopoJson.  | map.js  |   
+| updateMap  | Update map when slider is used for corresponding year.  | map.js  | 
 | ***Nightingale's Rose chart***  |   |   |
-| createRose   |   |   |
-| updateRose  |   |   |
-|   |   |   |
-|   |   |   |
+| createRose   | Draw a Nightingale's Rose chart with data for the default chosen year.  | rose.js  |
+| updateRose  | Update rose chart when slider is used for corresponding year.  | rose.js  |
 | ***Multi-line graph***  |   |   |
-| createLines  |   |   |
-| updateLines  |   |   |
-|   |   |   |
+| createLines  | Draws a multi-line graph   | lines.js  |
+| linkLines | When slider is used highlight corresponding period on the multi-line graph.| lines.js|
 | ***Bar chart***  |   |   |
-| createBars  |   |   |
-| updateBars  |   |   |
-|   |   |   |
+| createBars  | Draw bar chart with data for the default chosen year.  | bar.js  |
+| updateBars  | Update bar chart when slider is used for corresponding year.  | bar.js  |
 | ***Donut chart***  |   |   |
-| createDonut  |   |   |
-| updateDonut  |   |   |
-|   |   |   |
-|   |   |   |
+| createDonut  | Draw donut chart with data for the default chosen year.  | donut.js  |
+| updateDonut  | Update donut chart when slider is used for corresponding year.  | donut.js  |
+
+
+### D3 plugins
+
+- d3.queue
+- d3.legend
+- d3.container
+- d3.tip
+- d3.TopoJSON
+- d3.collections
+- d3.scale
+- d3.lineChunked
+- d3.colorBar
+- d3.geoProjection
+
+
+### D3 Libraries
+- Bootstrap 
+- to be continued...
 
