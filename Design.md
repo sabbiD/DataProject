@@ -1,6 +1,6 @@
 # Design Document
 
-## Data sources:
+## Data sources:  
 
 - Data about the land use in the Netherlands (2000 - 2017) from the CBS: [Link](http://statline.cbs.nl/Statweb/publication/?DM=SLNL&PA=80780NED&D1=0%2c2-7%2c13-18%2c24%2c50%2c90%2c116%2c156%2c159%2c226%2c321%2c327%2c332%2c364%2c383-384%2c388%2c400-403%2c406%2c409%2c418%2c427%2c444%2c459%2c504%2c512%2c519%2c526%2c538&D2=0&D3=0%2c5%2c10%2c15-16&HDR=G1%2cG2&STB=T&VW=T)  
 This data will be used for the map of the Netherlands and in the multi-line graph. 
@@ -18,8 +18,7 @@ This data will be used in the donut chart to display the use of specific pestici
 
 Except for the TopoJSON file, all the other files will be converted to Json-files.
 
-### Functions and operations
-
+### Functions and operations  
 
 
 | Function name   | Description  | File name  |
@@ -27,8 +26,7 @@ Except for the TopoJSON file, all the other files will be converted to Json-file
 | ***General functions***  |   |   |
 | getAllData  | Retrieves all data that will be necessary for visualizations.  | index.js  |
 
-##### Table 1. General functions
-
+##### Table 1. General functions  
 
 
 | Function name   | Description  | File name  |
@@ -37,9 +35,9 @@ Except for the TopoJSON file, all the other files will be converted to Json-file
 | onClick  | When clicked on part in Rose chart calls donut chart with corresponding information. | Rose.js  |   
 | onHover  | When hovered over region in the map shows tooltip with corresponding information. | map.js  | 
 | onSlide  | When slider is used calls update functions for map and Rose chart. | index.js  | 
-| onSelect | When choice in the dropdown menu is selected calls update function for bar chart with corresponding information. | bar.js  |
+| onSelect | When choice in the dropdown menu is selected calls update function for bar chart with corresponding information. | bar.js  |  
 
-##### Table 2. Event listeners
+##### Table 2. Event listeners  
 
 
 
