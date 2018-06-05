@@ -23,34 +23,25 @@ Except for the TopoJSON file, all the other files will be converted to Json-file
 | Function name   | Description  | File name  |
 |:---:|:---:|:---:|
 | ***Map***  |   |   |
-|---|---|---|
 | createMap  |   |   |   
 | updateMap  |   |   | 
 |   |   |   | 
 |   |   |   |
 |   |   |   |  
-|:---:|:---:|:---:|
 | ***Nightingale's Rose chart***  |   |   |
-|---|---|---|
 | createRose   |   |   |
 | updateRose  |   |   |
 |   |   |   |
 |   |   |   |
-|:---:|:---:|:---:|
 | ***Multi-line graph***  |   |   |
-|---|---|---|
 | createLines  |   |   |
 | updateLines  |   |   |
 |   |   |   |
-|:---:|:---:|:---:|
 | ***Bar chart***  |   |   |
-|---|---|---|
 | createBars  |   |   |
 | updateBars  |   |   |
 |   |   |   |
-|:---:|:---:|:---:|
 | ***Donut chart***  |   |   |
-|---|---|---|
 | createDonut  |   |   |
 | updateDonut  |   |   |
 |   |   |   |
