@@ -19,6 +19,25 @@ This data will be used in the donut chart to display the use of specific pestici
 Except for the TopoJSON file, all the other files will be converted to Json-files.
 
 
+| Function name   | Description  | File name  |
+|:---:|:---:|:---:|
+| ***General functions***  |   |   |
+|   |   |   |   
+| updateMap  |   |   | 
+|   |   |   | 
+|   |   |   |
+|   |   |   |  
+
+
+| Function name   | Description  | File name  |
+|:---:|:---:|:---:|
+| ***Event listeners***  |   |   |
+| onClick  | When clicked on part in Rose chart calls donut chart with corresponding information. | Rose.js  |   
+| onHover  | When hovered over region in the map shows tooltip with corresponding information. | map.js  | 
+| onSlide  | When slider is used calls update functions for map and Rose chart. | map.js and Rose.js OR main.js  | 
+| onSelect | When choice in the dropdown menu is selected calls update function for bar chart with corresponding information. | bar.js  |
+|   |   |   |  
+
 
 | Function name   | Description  | File name  |
 |:---:|:---:|:---:|
@@ -46,3 +65,4 @@ Except for the TopoJSON file, all the other files will be converted to Json-file
 | updateDonut  |   |   |
 |   |   |   |
 |   |   |   |
+
