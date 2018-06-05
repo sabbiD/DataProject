@@ -18,12 +18,14 @@ This data will be used in the donut chart to display the use of specific pestici
 
 Except for the TopoJSON file, all the other files will be converted to Json-files.
 
+### Functions and operations
 
 | Function name   | Description  | File name  |
 |-------------|-------------|-------------|
 | ***General functions***  |   |   |
 | getAllData  | Retrieves all data that will be necessary for visualizations.  | index.js  |
 
+Table 1. General functions
 
 | Function name   | Description  | File name  |
 |-------------|-------------|-------------|
@@ -33,24 +35,36 @@ Except for the TopoJSON file, all the other files will be converted to Json-file
 | onSlide  | When slider is used calls update functions for map and Rose chart. | index.js  | 
 | onSelect | When choice in the dropdown menu is selected calls update function for bar chart with corresponding information. | bar.js  |
 
+Table 2. Event listeners
 
 | Function name   | Description  | File name  |
 |-------------|-------------|-------------|
 | ***Map***  | | |
-| createMap  | Draws map of the Netherlands using TopoJson.  | map.js  |   
+| createMap  | Draws map of the Netherlands using TopoJson coloring regions according to data for default chosen year.  | map.js  |   
 | updateMap  | Update map when slider is used for corresponding year.  | map.js  | 
+||||
 | ***Nightingale's Rose chart***  |   |   |
 | createRose   | Draw a Nightingale's Rose chart with data for the default chosen year.  | rose.js  |
 | updateRose  | Update rose chart when slider is used for corresponding year.  | rose.js  |
+||||
 | ***Multi-line graph***  |   |   |
 | createLines  | Draws a multi-line graph   | lines.js  |
 | linkLines | When slider is used highlight corresponding period on the multi-line graph.| lines.js|
+||||
 | ***Bar chart***  |   |   |
 | createBars  | Draw bar chart with data for the default chosen year.  | bar.js  |
 | updateBars  | Update bar chart when slider is used for corresponding year.  | bar.js  |
+||||
 | ***Donut chart***  |   |   |
 | createDonut  | Draw donut chart with data for the default chosen year.  | donut.js  |
 | updateDonut  | Update donut chart when slider is used for corresponding year.  | donut.js  |
+
+Table 3. Visualization functions
+
+
+#### Operations
+
+The main functions will be run from index.js, libraries and scripts will be imported in index.html. The lay-out of the webpage is constructed with vis.css and a bootstrap theme is used.
 
 
 ### D3 plugins
