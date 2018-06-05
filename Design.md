@@ -17,3 +17,41 @@ This data will be used in the donut chart to display the use of specific pestici
 
 
 Except for the TopoJSON file, all the other files will be converted to Json-files.
+
+
+
+| Function name   | Description  | File name  |
+|:---:|:---:|:---:|
+| ***Map***  |   |   |
+|---|---|---|
+| createMap  |   |   |   
+| updateMap  |   |   | 
+|   |   |   | 
+|   |   |   |
+|   |   |   |  
+|:---:|:---:|:---:|
+| ***Nightingale's Rose chart***  |   |   |
+|---|---|---|
+| createRose   |   |   |
+| updateRose  |   |   |
+|   |   |   |
+|   |   |   |
+|:---:|:---:|:---:|
+| ***Multi-line graph***  |   |   |
+|---|---|---|
+| createLines  |   |   |
+| updateLines  |   |   |
+|   |   |   |
+|:---:|:---:|:---:|
+| ***Bar chart***  |   |   |
+|---|---|---|
+| createBars  |   |   |
+| updateBars  |   |   |
+|   |   |   |
+|:---:|:---:|:---:|
+| ***Donut chart***  |   |   |
+|---|---|---|
+| createDonut  |   |   |
+| updateDonut  |   |   |
+|   |   |   |
+|   |   |   |
