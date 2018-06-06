@@ -66,7 +66,7 @@ Except for the TopoJSON file, all the other files will be converted to JSON-file
 ##### Table 3. Visualization functions
 <br><br>
 
-##### Functions in action
+#### Functions in action
 
 <img src="https://github.com/sabbiD/DataProject/blob/master/doc/blankpage_update.jpg"/>
 
