@@ -16,7 +16,8 @@ This data will be used in the donut chart to display the use of specific pestici
 - TopoJSON for the Netherlands to make a map: [Link](http://bl.ocks.org/phil-pedruco/9344373)
 
 
-Except for the TopoJSON file, all the other files will be converted to Json-files.
+Except for the TopoJSON file, all the other files will be converted to JSON-files with a python converter (convertCSV2JSOn.py).
+
 <br><br>
 ### Functions and operations  
 <br><br>
@@ -68,11 +69,11 @@ Except for the TopoJSON file, all the other files will be converted to Json-file
 
 #### Flow of operations
 
-The main functions will be run from index.js, libraries and scripts will be imported in index.html. The lay-out of the webpage is constructed with vis.css and a bootstrap theme is used.
+The main functions will be run from index.js, libraries and scripts will be imported in index.html. The lay-out of the webpage is constructed with layout.css and a bootstrap theme will be used for the overall look of the webpage.
 
 <br><br>
 
-### D3 plugins
+### D3 plugins (Preliminary)
 
 - d3.queue
 - d3.legend
@@ -87,7 +88,7 @@ The main functions will be run from index.js, libraries and scripts will be impo
 
 <br><br>
 
-### D3 Libraries
+### D3 Libraries (Preliminary)
 - Bootstrap 
 - to be continued...
 
