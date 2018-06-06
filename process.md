@@ -8,7 +8,8 @@
 - Project Proposal submitted.
 
 ## Day 2
-- Think about how to access and process data and make suitable for use in visualizations.
+- Think about how to access and process data and make suitable for use in visualizations.  
+  - How to convert excel files to JSON and what is appropriate format?
 - Start writing Design report.
 
 ## Day 3
