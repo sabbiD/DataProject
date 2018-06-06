@@ -41,6 +41,7 @@ Except for the TopoJSON file, all the other files will be converted to Json-file
 <br><br>
 
 | Function name   | Description  | File name  |
+|----|----|----|
 | ***Map***  | | |
 |    createMap  | Draws map of the Netherlands using TopoJson, coloring regions according to data for default chosen year.  | map.js  |   
 |    updateMap  | Update map when slider is used for corresponding year.  | map.js  | 
