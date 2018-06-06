@@ -58,16 +58,16 @@ Through visualizing all the different aspects around the Colony Collapse Disorde
 
   ### Similar visualizations:
   
-  - [Fertiziler and pesticide use around the world](https://ourworldindata.org/fertilizer-and-pesticides)
-    This visualizations shows a lot of different graphs concerning pesticide and fertilizer use around the world.
+  - [Fertiziler and pesticide use around the world](https://ourworldindata.org/fertilizer-and-pesticides)  
+  This visualizations shows a lot of different graphs concerning pesticide and fertilizer use around the world.
     I would like to make a similar type of line graph and a map as in this visualization. 
-  - [Nightingale's rose](http://bl.ocks.org/kgryte/5926740)
-    A basic example of a nightingale's rose chart.
+  - [Nightingale's rose](http://bl.ocks.org/kgryte/5926740)  
+  A basic example of a nightingale's rose chart.
     I would like to make a similar rose chart.
-  - [Donut Chart](https://datavizcatalogue.com/methods/donut_chart.html)
-    A basic example of a donut chart.
-  - [Bee Informed](https://bip2.beeinformed.org/loss-map/)
-    A visualization of the winter colony losses on the US map. I would have liked to make a similar map for the Netherlands, but
+  - [Donut Chart](https://datavizcatalogue.com/methods/donut_chart.html)  
+  A basic example of a donut chart.
+  - [Bee Informed](https://bip2.beeinformed.org/loss-map/)  
+  A visualization of the winter colony losses on the US map. I would have liked to make a similar map for the Netherlands, but
     unfortunately this data for specific regions is not available.
   
   
