@@ -43,24 +43,24 @@ Except for the TopoJSON file, all the other files will be converted to Json-file
 | Function name   | Description  | File name  |
 |-------------|-------------|-------------|
 | ***Map***  | | |
-| createMap  | Draws map of the Netherlands using TopoJson, coloring regions according to data for default chosen year.  | map.js  |   
-| updateMap  | Update map when slider is used for corresponding year.  | map.js  | 
+|    createMap  | Draws map of the Netherlands using TopoJson, coloring regions according to data for default chosen year.  | map.js  |   
+|    updateMap  | Update map when slider is used for corresponding year.  | map.js  | 
 ||||
 | ***Nightingale's Rose chart***  |   |   |
-| createRose   | Draw a Nightingale's Rose chart with data for the default chosen year.  | rose.js  |
-| updateRose  | Update rose chart when slider is used for corresponding year.  | rose.js  |
+|    createRose   | Draw a Nightingale's Rose chart with data for the default chosen year.  | rose.js  |
+|    updateRose  | Update rose chart when slider is used for corresponding year.  | rose.js  |
 ||||
 | ***Multi-line graph***  |   |   |
-| createLines  | Draws a multi-line graph   | lines.js  |
-| linkLines | When slider is used highlight corresponding period on the multi-line graph.| lines.js|
+|    createLines  | Draws a multi-line graph   | lines.js  |
+|    linkLines | When slider is used highlight corresponding period on the multi-line graph.| lines.js|
 ||||
 | ***Bar chart***  |   |   |
-| createBars  | Draw bar chart with data for the default chosen year.  | bar.js  |
-| updateBars  | Update bar chart when slider is used for corresponding year.  | bar.js  |
+|    createBars  | Draw bar chart with data for the default chosen year.  | bar.js  |
+|    updateBars  | Update bar chart when slider is used for corresponding year.  | bar.js  |
 ||||
 | ***Donut chart***  |   |   |
-| createDonut  | Draw donut chart with data for the default chosen year.  | donut.js  |
-| updateDonut  | Update donut chart when slider is used for corresponding year.  | donut.js  |
+|    createDonut  | Draw donut chart with data for the default chosen year.  | donut.js  |
+|    updateDonut  | Update donut chart when slider is used for corresponding year.  | donut.js  |
 
 ##### Table 3. Visualization functions
 <br><br>
