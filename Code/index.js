@@ -26,12 +26,8 @@ function callback(error, response) {
 	specificPest = JSON.parse(response[3].responseText)
 	winterDeathUS = JSON.parse(response[4].responseText)
 	mapDutch = JSON.parse(response[5].responseText)
-	/*console.log(winterDeathNL)
-	console.log(soilUse)
-	console.log(tempData)
-	console.log(specificPest)
-	console.log(winterDeathUS)*/
 
 	createMap(mapDutch);
+	createRose(specificPest);
 	}
 //}

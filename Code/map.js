@@ -4,7 +4,6 @@ function createMap(data){
 	var	width		= 400,
 	    height		= 400;
 
-	
 
 	// define map projection
 	var projection = d3.geoMercator()

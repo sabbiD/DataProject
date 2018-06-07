@@ -1,7 +1,9 @@
 
+function createRose(data){
+
 var Chart = {};
 
-Chart.rose = function() {
+Chart.rose = function(data) {
 
 	var margin = {'top': 20, 'right': 20, 'bottom': 20, 'left': 20},
 		height = 500,
@@ -203,3 +205,5 @@ var rose = Chart.rose()
 console.log(specificPest)
 figure.data(specificPest)
 	.call(rose)
+
+}
