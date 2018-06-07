@@ -32,9 +32,8 @@ function callback(error, response) {
 	console.log(specificPest)
 	console.log(winterDeathUS)*/
 
-	var rose = Chart.rose(),
-		width		= 400,
-	    height		= 400
+	var	width		= 400,
+	    height		= 400;
 
 	
 
@@ -49,9 +48,6 @@ function callback(error, response) {
 			.attr("width", width)
 			.attr("height", height)
 
-	// Append a new figure to the DOM:
-	figure = d3.select( "#containerRose" )
-		.append("figure");
 
 	// initialize placing for tooltips
 	var offsetL = document.getElementById('container').offsetLeft+10;
@@ -81,7 +77,6 @@ function callback(error, response) {
 	// setting scales accoring to json file of continent
 	projection.fitSize([width, height], mapDutch);
 
-	console.log(mapDutch.features)
 	// add countries to map with country name as id
 	// calling tooltips on hover
 	// adding on click function to select scatters
