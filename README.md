@@ -3,6 +3,7 @@
 #### Sebile Demirtaş
 ##### 10548270
 
+[See project on Github Pages](https://sabbid.github.io/DataProject/index.html)
 
 ## Problem Statement
 
