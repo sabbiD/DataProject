@@ -1,5 +1,41 @@
-.navbar-dark {
-  background-color:yellow;
-  background-image: none;
-  background-repeat: no-repeat;
- }
+#container {
+	width: 400px;
+	margin-left: 100px;
+	float:left;
+	margin-top: 20px;
+}
+
+#containerRose {
+	width: 400px;
+	margin-left: 100px;
+	float:right;
+	margin-top: 20px;
+}
+.d3-tip {
+  line-height: 1;
+  font-weight: bold;
+  padding: 2px;
+  color: black;
+  border-radius: 0px;
+  position: absolute;
+}
+
+path:hover {
+	fill: grey;
+	cursor:pointer;
+			}
+
+.hidden {
+    display: none;
+    }
+
+.tooltip {
+	  color: #222; 
+	  background: #fff; 
+	  border-radius: 3px; 
+	  box-shadow: 0px 0px 2px 0px #a6a6a6; 
+	  padding: .2em; 
+	  text-shadow: #f5f5f5 0 1px 0;
+	  opacity: 0.9; 
+	  position: absolute;
+}
