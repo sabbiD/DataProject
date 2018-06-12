@@ -31,7 +31,7 @@ function callback(error, response) {
 	pest = JSON.parse(response[6].responseText)
 
 	years = winterDeathNL["Winter bee death in the Netherlands"]["0"]
-	deathLines = Object.values(years)
+	death = Object.values(years)
 	years = Object.keys(years)
 	temps = Object.values(tempData["Temperatuur Midden-Nederland"])["0"]
 	temps = Object.values(temps)
@@ -44,27 +44,47 @@ function callback(error, response) {
 	//console.log(specificPest)
 
 	var linesData = []
+	var yearLines = [],
+	tempLines = [],
+	deathLines = [],
+	pestLines =  [],
+	nameList = []
 
 	for (var i = 0; i < years.length - 4;i++){
 			
-			var n = i + 21
-			linesData.push({
+			deathLines.push({
 				
-				key: years[i],
-				values:{"death" : deathLines[i], "temp": temps[i + 11], 
-				"pest": pestTotal[i + 21]["Totaal"] }
+				x: years[i],
+				y: death[i]
 			})
 
+			// Data points with base line 2006
+			tempLines.push({
+
+				x: years[i],
+				y: ((parseFloat(temps[i+11], 1000) / parseFloat(temps[11], 1000)) - 1) * 100
+			})
+
+			// Data points with base line 2006 
+			pestLines.push({
+				x: years[i],
+				y: ((pestTotal[i + 21]["Totaal"] / pestTotal[21]["Totaal"]) - 1) * 100
+			})
+
+
 	}
+
+	linesData.push(tempLines, deathLines, pestLines)
+	nameList.push("Temperature Change", "Winter death rates", "Pesticide Use")
+	console.log(linesData)
 
 	//console.log(linesData)
 	createMap(mapDutch);
 	//createRose(specificPest);
 
-	var chart = createLines(years, 'values', [deathLines,
-        temps], {xAxis: 'Years', yAxis: 'Percentage'});
-    chart.bind("#lineGraph");
-    chart.render();
+	var chart = createLines(linesData, nameList)
+    //chart.bind("#lineGraph");
+    //chart.render();
 
 	}
 }
