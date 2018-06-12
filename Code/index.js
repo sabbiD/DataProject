@@ -1,3 +1,4 @@
+//https://bl.ocks.org/johnwalley/e1d256b81e51da68f7feb632a53c3518 (sliders)
 window.onload = function() {
 
 winterDeath = "Data/winterDeath.json";
@@ -87,6 +88,32 @@ function callback(error, response) {
 	//createRose(specificPest);
 
 	var chart = createLines(linesData)
+
+
+	var data3 = d3.range(0, 10).map(function (d) { return new Date(2006 + d, 10, 3); });
+
+	  var slider3 = d3.sliderHorizontal()
+	    .min(d3.min(data3))
+	    .max(d3.max(data3))
+	    .step(1000 * 60 * 60 * 24 * 365)
+	    .width(400)
+	    .tickFormat(d3.timeFormat('%Y'))
+	    .tickValues(data3)
+	    .on('onchange', val => {
+	      d3.select("p#value3").text(d3.timeFormat('%Y')(val));
+	    });
+
+	  var g = d3.select("div#slider3").append("svg")
+	    .attr("width", 500)
+	    .attr("height", 100)
+	    .append("g")
+	    .attr("transform", "translate(30,30)");
+
+	  g.call(slider3);
+
+	  d3.select("p#value3").text(d3.timeFormat('%Y')(slider3.value()));
+	  d3.select("a#setValue3").on("click", () => slider3.value(new Date(2007, 11, 17)));
+
 
 	}
 }

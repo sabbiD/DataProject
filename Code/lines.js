@@ -84,8 +84,8 @@ function createLines(dataset) {
           })
           .attr("width", 10)
           .attr("height", 10)
-          .style("fill", function(d) {
-            return color(d["name"]);
+          .style("fill", function(d, i) {
+            return color(d[i]["name"]) ;
           });
 
         legend.append("text")
@@ -93,8 +93,8 @@ function createLines(dataset) {
           .attr("y", function(d, i) {
             return (i * 20) + 9;
           })
-          .text(function(d) {
-            return d["name"];
+          .text(function(d, i) {
+            return d[i]["name"];
           });
     
 }
