@@ -1,7 +1,8 @@
-function createLines(dataset, nameList) {
+// https://codepen.io/dannyhc/pen/WQdmwa?editors=1010 (for horizontal line)
+
+function createLines(dataset) {
 
     //console.log(dataset)
-    console.log(nameList)
     
     // Set the dimensions of the canvas / graph
     var margin = {top: 30, right: 20, bottom: 30, left: 50},
@@ -10,7 +11,7 @@ function createLines(dataset, nameList) {
 
     // Set the ranges
     var x = d3.scaleLinear().domain([2006, 2015]).range([0, width]);
-    var y = d3.scaleLinear().domain([-30, 30]).range([height, 0]);
+    var y = d3.scaleLinear().domain([-100, 20]).range([height, 0]);
 
     // Define the axes
     var xAxis = d3.axisBottom(x).scale(x)
@@ -21,7 +22,8 @@ function createLines(dataset, nameList) {
     // Define the line
     var multiLine = d3.line()   
         .x(function(d) {  return x(d["x"]); })
-        .y(function(d) { return y(d["y"]); });
+        .y(function(d) { return y(d["y"]); })
+        .curve(d3.curveCatmullRom);
         
     // Adds the svg canvas
     var lineGraph = d3.select("#containerGraph")
@@ -31,18 +33,20 @@ function createLines(dataset, nameList) {
         .append("g")
             .attr("transform", 
                  "translate(" + margin.left + "," + margin.top + ")");
+    
+    var color = d3.scaleOrdinal(d3.schemeSet1);  // set the colour scale
 
     // Get the data
-    var data = dataset.forEach(function(d) {
+    dataset.forEach(function(d) {
 
-        var color = d3.scaleOrdinal(d3.schemeCategory10);  // set the colour scale
-
+        
         lineGraph.append("path")
             .data(d)
             .attr("class", "line")
-            .attr("id", function(d, i){ i++ ; return nameList[i] } )
+            .style("stroke-width", "2px")
+            .attr("id", function(d){ return d["name"] } )
             .attr("d",  multiLine(d))
-            .style("stroke", color(d[10]));
+            .style("stroke", function(d){ return color(d["name"]);});
 
        });
 
@@ -57,5 +61,40 @@ function createLines(dataset, nameList) {
         lineGraph.append("g")
             .attr("class", "axis")
             .call(yAxis);
+
+        // Add horizontal red line at zero point
+        lineGraph.append("g")
+            .attr("transform", "translate(0," + y(0) + ")")
+            .append("line")
+            .attr("x2", width)
+            .style("stroke-dasharray", ("5,3"))
+            .style("fill-opacity", .3)
+            .style("stroke", "red")
+
+        var legend = lineGraph.selectAll("Legend")
+          .data(dataset)
+          .enter()
+          .append("g")
+          .attr("class", "legend");
+
+        legend.append("rect")
+          .attr("x", width - 20)
+          .attr("y", function(d, i) {
+            return i * 20;
+          })
+          .attr("width", 10)
+          .attr("height", 10)
+          .style("fill", function(d) {
+            return color(d["name"]);
+          });
+
+        legend.append("text")
+          .attr("x", width - 8)
+          .attr("y", function(d, i) {
+            return (i * 20) + 9;
+          })
+          .text(function(d) {
+            return d["name"];
+          });
     
 }

@@ -52,21 +52,26 @@ function callback(error, response) {
 
 	for (var i = 0; i < years.length - 4;i++){
 			
+			// Data points with base line 2006
 			deathLines.push({
 				
+				name: "Winter death rates",
 				x: years[i],
-				y: death[i]
+				y: (death[i] / death[0] - 1) * 100
 			})
 
 			// Data points with base line 2006
 			tempLines.push({
 
+				name:"Temperature Change",
 				x: years[i],
 				y: ((parseFloat(temps[i+11], 1000) / parseFloat(temps[11], 1000)) - 1) * 100
 			})
 
 			// Data points with base line 2006 
 			pestLines.push({
+
+				name: "Pesticide Use",
 				x: years[i],
 				y: ((pestTotal[i + 21]["Totaal"] / pestTotal[21]["Totaal"]) - 1) * 100
 			})
@@ -75,16 +80,13 @@ function callback(error, response) {
 	}
 
 	linesData.push(tempLines, deathLines, pestLines)
-	nameList.push("Temperature Change", "Winter death rates", "Pesticide Use")
 	console.log(linesData)
 
 	//console.log(linesData)
 	createMap(mapDutch);
 	//createRose(specificPest);
 
-	var chart = createLines(linesData, nameList)
-    //chart.bind("#lineGraph");
-    //chart.render();
+	var chart = createLines(linesData)
 
 	}
 }
