@@ -32,4 +32,9 @@ with csv or tsv data).
 
 ## Day 6
 - Continuing with multi-line chart and trying to transform data to be appropriate. 
+- Problems with axis of multi-line chart. No idea why...
+
+## Day 7
+- After trying to fix axis and nothing seems to be working switching to version 4 seems to do the trick.
+- Trying to color lines and attach names to lines as id's.
 
