@@ -8,11 +8,11 @@ function createLines(dataset) {
     // Set the dimensions of the canvas / graph
     var margin = {top: 30, right: 20, bottom: 30, left: 50},
         width = 600 - margin.left - margin.right,
-        height = 270 - margin.top - margin.bottom;
+        height = 320 - margin.top - margin.bottom;
 
     // Set the ranges
     var x = d3.scaleLinear().domain([2006, 2015]).range([0, width]);
-    var y = d3.scaleLinear().domain([-100, 20]).range([height, 0]);
+    var y = d3.scaleLinear().domain([-70, 20]).range([height, 0]);
 
     // Define the axes
     var xAxis = d3.axisBottom(x).scale(x)
@@ -72,13 +72,58 @@ function createLines(dataset) {
             .style("fill-opacity", .3)
             .style("stroke", "red")
 
-        var legend = lineGraph.selectAll("Legend")
+        /*var legend = lineGraph.selectAll("Legend")
           .data(dataset)
           .enter()
           .append("g")
-          .attr("class", "legend");
+          .attr("class", "legend");*/
 
-        legend.append("rect")
+        var Legned = d3.select(".legend").append("svg")
+            .attr("width", width)
+            .attr("height", height - 50)
+        
+        var dataL = 0;
+        var offset = 80;
+        
+        var legend = lineGraph.selectAll('.legend')
+            .data(dataset)
+            .enter().append('g')
+            .attr("class", "legend")
+            .attr("transform", function (d, i) {
+             if (i === 0) {
+                dataL = d.length + offset 
+                return "translate(0,0)"
+            } else { 
+             var newdataL = dataL
+             dataL +=  d.length + offset
+             return "translate(" + (newdataL) + ",0)"
+            }
+        })
+
+        legend.append('rect')
+            .attr("x", 0)
+            .attr("y", 280)
+            .attr("width", 10)
+            .attr("height", 10)
+            .style("fill", function (d, i) {
+            return color(d[i]["name"])
+        })
+        
+        legend.append('text')
+            .attr("x", 100)
+            /*.attr("y", function(d, i) {
+            return (i * 100) + 9;
+            })*/
+        .attr("y", 280)
+        .attr("dy", ".35em")
+        .text(function (d, i) {
+            return d[i]["name"]
+        })
+            .attr("class", "textselected")
+            .style("text-anchor", "end")
+            .style("font-size", 12)
+
+        /*legend.append("rect")
           .attr("x", width - 20)
           .attr("y", function(d, i) {
             return i * 20;
@@ -96,7 +141,7 @@ function createLines(dataset) {
           })
           .text(function(d, i) {
             return d[i]["name"];
-          });
+          });*/
     
     var mouseG = lineGraph.append("g")
       .attr("class", "mouse-over-effects");
@@ -104,7 +149,7 @@ function createLines(dataset) {
     mouseG.append("path") // this is the black vertical line to follow mouse
       .attr("class", "mouse-line")
       .style("stroke", "black")
-      .style("stroke-width", "1px")
+      .style("stroke-width", "0px")
       .style("opacity", "0");
       
     var lines = document.getElementsByClassName('line');
@@ -120,9 +165,8 @@ function createLines(dataset) {
       .style("fill", function(d, i) {
         return color(d[i]["name"]);
       })
-      //.style("fill", "none")
       .style("stroke-width", "1px")
-      .style("opacity", "0");
+      //.style("opacity", 0.25);
 
     mousePerLine.append("text")
       .attr("transform", "translate(10,3)");
@@ -159,10 +203,6 @@ function createLines(dataset) {
 
         d3.selectAll(".mouse-per-line")
           .attr("transform", function(d, i) {
-            var xDate = x.invert(mouse[0]),
-                bisect = d3.bisector(function(d) { return d.date; }).right;
-                idx = bisect(d.values, xDate);
-            
             var beginning = 0,
                 end = lines[i].getTotalLength(),
                 target = null;
