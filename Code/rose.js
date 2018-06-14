@@ -1,209 +1,76 @@
 
-function createRose(data){
+function createRose(dataset){
+	
+	var value = [],
+	data = [1, 1, 1, 1],
+	width = 400,
+	height = 400,
+	radius = 140;
 
-var Chart = {};
-
-Chart.rose = function(data) {
-
-	var margin = {'top': 20, 'right': 20, 'bottom': 20, 'left': 20},
-		height = 500,
-		width = 500,
-		color = 'rgb(0,0,0)',
-		area = function(d) { return [d.y]; },
-		angle = function(d) { return d.x; },
-		radiusScale = d3.scale.linear(),
-		angleScale = d3.scale.linear().range( [Math.PI, 3*Math.PI ] ),
-		domain = [0, 1],
-		legend = [''],
-		label = function(d) { return d.label; },
-		delay = 1000,
-		duration = 100,
-		canvas, graph, centerX, centerY, numWedges, wedgeGroups, wedges, legendGroup;
-
-	// Arc Generator:
-	var arc = d3.svg.arc()
-		.innerRadius( 0 )
-		.outerRadius( function(d,i) { return radiusScale( d.radius ); } )
-		.startAngle( function(d,i) { return angleScale( d.angle ); } );
-
-	function chart( selection ) {
-
-		selection.each( function( data ) {
-
-			// Determine the number of wedges:
-			numWedges = data.length;
-
-			// Standardize the data:
-			data = formatData( data );
-			console.log(data)
-
-			// Update the chart parameters:
-			updateParams();
-
-			// Create the chart base:
-			createBase( this );
-
-			// Create the wedges:
-			createWedges( data );
-
-		});
-
-	}; // end FUNCTION chart()
-
-	//
-	function formatData( data ) {
-		// Convert data to standard representation; needed for non-deterministic accessors:
-		data = data.map( function(d, i) {
-			return {
-				'angle': angle.call(data, d, i),
-				'area': area.call(data, d, i),
-				'label': label.call(data, d, i)			
-			};
-		});
-
-		// Now convert the area values to radii:
-		// http://understandinguncertainty.org/node/214 
-		return data.map( function(d, i) {
-			return {
-				'angle': d.angle,
-				'label': d.label,
-				'radius': d.area.map( function(area) {
-					return Math.sqrt( area*numWedges / Math.PI );
-				})
-			}
-		})
-	}; // end FUNCTION formatData()
-
-	//
-	function updateParams() {
-		// Update the arc generator:
-		arc.endAngle( function(d,i) { return angleScale( d.angle ) + (Math.PI / (numWedges/2)); } );
-
-		// Determine the chart center:
-		centerX = (width - margin.left - margin.right) / 2;
-		centerY = (height - margin.top - margin.bottom) / 2;
-
-		// Update the radius scale:
-		radiusScale.domain( domain )
-			.range( [0, d3.min( [centerX, centerY] ) ] );
-
-		// Update the angle scale:
-		angleScale.domain( [0, numWedges] );		
-	}; // end FUNCTION updateParams()
-
-	// 
-	function createBase( selection ) {
-
-		// Create the SVG element:
-		canvas = d3.select( selection ).append('svg:svg')
-			.attr('width', width)
-			.attr('height', height)
-			.attr('class', 'canvas');
-
-		// Create the graph element:
-		graph = canvas.append('svg:g')
-			.attr('class', 'graph')
-			.attr('transform', 'translate(' + (centerX + margin.left) + ',' + (centerY + margin.top) + ')');
-
-	}; // end FUNCTION createBase()
+	value.push(Object.values(dataset[0][1996]));
 
 
-	function createWedges( data ) {
+	var color = d3.scaleOrdinal()
+	  .range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]);
+	var arc;
 
-		// Create the wedge groups:
-		wedgeGroups = graph.selectAll('.wedgeGroup')
-			.data( data )
-		  .enter().append('svg:g')
-		  	.attr('class', 'wedgeGroup')
-		  	.attr('transform', 'scale(0,0)');
+	var categories = [data[0].Categorie, data[1].Categorie, data[2].Categorie, data[3].Categorie]
 
-		// Create the wedges:
-		wedges = wedgeGroups.selectAll('.wedge')
-		  	.data( function(d) { 
-		  		var ids = d3.range(0, legend.length);
+	var pie = d3.pie()
+	  .sort(null)
+	  .value(function(d) {
+	    return d;
+	  });
 
-		  		ids.sort( function(a,b) { 
-			  		var val2 = d.radius[b],
-			  			val1 = d.radius[a]
-			  		return  val2 - val1; 
-			  	});
-			  	return ids.map( function(i) {
-			  		return {
-			  			'legend': legend[i],
-			  			'radius': d.radius[i],
-			  			'angle': d.angle
-			  		};
-			  	});
-		  	})
-		  .enter().append('svg:path')
-		  	.attr('class', function(d) { return 'wedge ' + d.legend; })
-		  	.attr('d', arc );
+	var roseGraph = d3.select("#containerRose").append("svg")
+	  .attr("width", width)
+	  .attr("height", height)
+	  .append("g")
+	  .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
 
-		// Append title tooltips:
-		wedges.append('svg:title')
-			.text( function(d) { return d.legend + ': ' + Math.floor(Math.pow(d.radius,2) * Math.PI / numWedges); });
+	var g = roseGraph.selectAll(".arc")
+	  .data(pie(data))
+	  .enter().append("g")
+	  .attr("class", "arc");
 
-		// Transition the wedges to view:
-		wedgeGroups.transition()
-			.delay( delay )
-			.duration( function(d,i) { 
-				return duration*i;
-			})
-			.attr('transform', 'scale(1,1)');
+	for (var i = 0; i < 20; i++) {
+	  arc = d3.arc()
+	    .outerRadius(radius)
+	    .innerRadius(radius - 4);
+	  radius = radius - 5;
 
-		// Append labels to the wedgeGroups:
-		var numLabels = d3.selectAll('.label-path')[0].length;
-		
-		wedgeGroups.selectAll('.label-path')
-			.data( function(d,i) { 
-				return [
-					{
-						'index': i,
-						'angle': d.angle,
-						'radius': d3.max( d.radius.concat( [23] ) )
-					}
-				];
-			} )
-		  .enter().append('svg:path')
-		  	.attr('class', 'label-path')
-		  	.attr('id', function(d) {
-		  		return 'label-path' + (d.index + numLabels);
-		  	})
-			.attr('d', arc)
-		  	.attr('fill', 'none')
-		  	.attr('stroke', 'none');
+	  g.append("path")
+	    .attr("d", arc)
+	    .style("fill", function(d) {
+	      return color(d);
+	    })
+	    .style("stroke", "#ffffff")
+	    .style("stroke-width", 3);
 
-		wedgeGroups.selectAll('.label')
-			.data( function(d,i) { 
-				return [
-					{
-						'index': i,
-						'label': d.label
-					}
-				];
-			} )
-		  .enter().append('svg:text')
-	   		.attr('class', 'label')
-	   		.attr('text-anchor', 'start')
-	   		.attr('x', 5)
-	   		.attr('dy', '-.71em')
-	   		.attr('text-align', 'center')
-	  		.append('textPath')
-	  			.attr('xlink:href', function(d,i) { 
-	  				return '#label-path' + (d.index + numLabels);
-	  			})
-	  			.text( function(d) { return d.label; } );
+	}
 
-	}; // end FUNCTION createWedges()	
-};
+	var startAngle = 0;
+	for (var i = 0; i < 4; i++) {
+	  arc = d3.arc()
+	    .innerRadius(radius)
+	    .outerRadius(radius + (value[i] * 5) / 100)
+	    .startAngle(startAngle)
+	    .endAngle((2 * Math.PI) * (i + 1) / 4);
+	  startAngle = (2 * Math.PI) * (i + 1) / 4;
+	  roseGraph.append("path")
+	    .attr("class", "arc")
+	    .attr("d", arc)
+	    .style("fill", function(d) {
+	      return color(i);
+	    })
+	    .style("stroke", "#ffffff")
+	    .style("stroke-width", 2)
+	    .text(function(d) {
+	      return d;
+	    })
+	    .on("mouseover", function(d) {
+	      arc.style("fill", "#ffffff");
+	    });
 
-// Append a new figure to the DOM:
-figure = d3.select( "#containerRose" )
-	.append("figure")
-
-var rose = Chart.rose()
-console.log(specificPest)
-figure.data(specificPest)
-	.call(rose)
-
+	}
 }

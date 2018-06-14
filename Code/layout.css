@@ -14,6 +14,11 @@
 	background-color:;
 	margin-bottom: 20px;
 }
+
+#containerRose {
+	float:right;
+	
+}
 .d3-tip {
   line-height: 1;
   font-weight: bold;

@@ -111,14 +111,11 @@ function createLines(dataset) {
         
         legend.append('text')
             .attr("x", 100)
-            /*.attr("y", function(d, i) {
-            return (i * 100) + 9;
-            })*/
-        .attr("y", 280)
-        .attr("dy", ".35em")
-        .text(function (d, i) {
-            return d[i]["name"]
-        })
+            .attr("y", 280)
+            .attr("dy", ".35em")
+            .text(function (d, i) {
+                return d[i]["name"]
+            })
             .attr("class", "textselected")
             .style("text-anchor", "end")
             .style("font-size", 12)

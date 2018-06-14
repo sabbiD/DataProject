@@ -36,7 +36,7 @@ function callback(error, response) {
 	years = Object.keys(years)
 	temps = Object.values(tempData["Temperatuur Midden-Nederland"])["0"]
 	temps = Object.values(temps)
-	//pesticides = Object.values(specificPest["Gewasbeschermingsmiddelen gebruik"]["0"])
+	//pesticides = Object.values(specificPest["Gewasbeschermingsmiddelen gebruik"])
 	pestTotal = Object.values(pest)
 	
 	//console.log(pest)
@@ -49,7 +49,8 @@ function callback(error, response) {
 	tempLines = [],
 	deathLines = [],
 	pestLines =  [],
-	nameList = []
+	nameList = [],
+	roseData = []
 
 	for (var i = 0; i < years.length - 4;i++){
 			
@@ -80,12 +81,16 @@ function callback(error, response) {
 
 	}
 
+		
+	roseData.push(pest)
 	linesData.push(tempLines, deathLines, pestLines)
-	console.log(linesData)
+	console.log(roseData)
 
 	//console.log(linesData)
 	createMap(mapDutch);
-	//createRose(specificPest);
+
+	//console.log(roseData)
+	createRose(roseData);
 
 	var chart = createLines(linesData)
 
