@@ -7,12 +7,12 @@ Each header starts with the author's name and student number, followed by a desc
 
 Example  
 ```javascript
-/*
+ /*
  *  Sammy Heutz
  *  10445765
  * 
  * Barchart.js contains the functions that creates the barchart via index.js
-**/
+ **/
 ```
 
 ## Variable names
@@ -37,8 +37,11 @@ Example
 ```javascript
 
 var x = 10, y = 15;
+
 for (var i = 0; i < data.length; i++){ 
+    
     var z = (x + y) * i;
+
 }
 ```
 
@@ -50,6 +53,7 @@ Simple statements are ended with a semicolon.
 
 Example  
 ```javascript
+
 var x = 15;
 
 ```
@@ -61,9 +65,13 @@ Functions, if statements or for loops are **not** followed by a semicolon.
 
 Example
 ```javascript
+
 function multiplyByTen(array){
+    
     for (var i = 0; i < array.length; i++){
+        
         array[i] *= 10;
+    
     }
     return array;
 }
@@ -76,7 +84,8 @@ Closing brackets are placed on a separate line.
 
 ## Line length
 Lines longer than 80 characters are avoided where possible.  
-Authors:
+
+### Authors:
 - Sammy Heutz
 - Sylvie Langhout
 - Sebile Demirtaş
