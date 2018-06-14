@@ -11,17 +11,18 @@ function createRose(dataset){
 	value.push(Object.values(dataset[0][1996]));
 
 
-	var color = d3.scaleOrdinal()
+	var color = d3.scaleLinear()
 	  .range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]);
 	var arc;
 
-	var categories = d3.scaleOrdinal().range(Object.keys(dataset[0][1995]))
+	var categories = d3.scaleOrdinal().range(["Insects and mites", "Funghi and bacteria", "Weeds", "Other"])
+	.domain([5, 9, 14, 19])
 
 	var pie = d3.pie()
 	  .sort(null)
-	  .value(function(d) {
+	  /*.value(function(d) {
 	    return d;
-	  });
+	  });*/
 
 	var roseGraph = d3.select("#containerRose").append("svg")
 	  .attr("width", width)
@@ -34,6 +35,16 @@ function createRose(dataset){
 	  .enter().append("g")
 	  .attr("class", "arc");
 
+	 var label = roseGraph.append("g")
+		    .attr("id", "label")
+		    .style("fill", "navy");
+
+   label.append("text")
+   		.style("font-size", "15px")
+	  .append("textPath")
+	    .attr("xlink:href", "#backArc")
+	    .text(categories(i));
+
 	for (var i = 0; i < 20; i++) {
 	  arc = d3.arc()
 	    .outerRadius(radius)
@@ -41,12 +52,31 @@ function createRose(dataset){
 	  radius = radius - 4;
 
 	  g.append("path")
+	  	.attr("id", "backArc" + i)
 	    .attr("d", arc)
 	    .style("fill", function(d) {
 	      return color(d);
 	    })
 	    .style("stroke", "#ffffff")
 	    .style("stroke-width", 3);
+
+	  /*if ( i === 4 || i === 9 || i === 14 || i === 19){
+	
+		  var label = roseGraph.append("g")
+		    .attr("id", "label")
+		    .style("fill", "navy");
+
+		   label.append("text")
+		   		.style("font-size", "15px")
+			  .append("textPath")
+			    .attr("xlink:href", "#backArc")
+			    .text(categories(i));
+
+			label.append("use")
+			    .attr("xlink:href", "#backArc")
+			    .style("stroke", "black")
+			    .style("fill", "none");
+		}*/
 
 	}
 	
@@ -59,31 +89,31 @@ function createRose(dataset){
 	    .startAngle(startAngle)
 	    .endAngle((2 * Math.PI) * (i - 1 + 1) / 4);
 	  startAngle = (2 * Math.PI) * (i - 1 + 1) / 4;
-	  
+
 	  roseGraph.append("path")
-	    .attr("class", "arc")
+	    .attr("id", "arc")
 	    .attr("d", arc)
 	    .style("fill", function(d) {
 	      return color(i);
 	    })
 	    .style("stroke", "#ffffff")
 	    .style("stroke-width", 2)
-	    .on("mouseover", function(d) {
+	    /*.on("mouseover", function(d) {
 	      
 	      arc.style("fill", "red");
 	    
-	    });
+	    });*/
 
-	  var labels = roseGraph.selectAll("path")
-	  	.append("text")
-        .attr("dx", 100)
-        .attr("dy", 50)
-        .append("textPath")
-        /*.attr("xlink:href", function(d, i) {
-            return "#arc" + i;
-        })*/
-        .text(function(d) {
-            return categories(d);
-        })
-	}
+	    /*var label = roseGraph.append("g")
+		    .attr("id", "label")
+		    .style("fill", "navy");
+*/
+	   label.append("text")
+	   		.data(categories)
+	   		.style("font-size", "15px")
+		  .append("textPath")
+		    .attr("xlink:href", function(d){ return "#backArc"+ (i + 4);})
+		    .text(categories(i));
+		  
+	  }
 }
