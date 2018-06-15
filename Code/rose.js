@@ -1,5 +1,5 @@
 // https://jsfiddle.net/forwardsprint/wrgtj1nL/ (rose chart)
-
+// http://bl.ocks.org/ChandrakantThakkarDigiCorp/c8ce360f8bc896ffa6c16d30a4cd026b (labels rose chart)
 function createRose(dataset){
 	
 	var value = [],
@@ -30,20 +30,20 @@ function createRose(dataset){
 	  .append("g")
 	  .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
 
-	var g = roseGraph.selectAll(".arc")
+	 /*var label = roseGraph.append("g")
+		    .attr("id", "label")
+		    .style("fill", "navy");
+*/
+   /*label.append("text")
+   		.style("font-size", "15px")
+	  .append("textPath")
+	    .attr("xlink:href", "#arc")
+	    .text(categories(i));*/
+
+	 var g = roseGraph.selectAll(".arc")
 	  .data(pie(data))
 	  .enter().append("g")
 	  .attr("class", "arc");
-
-	 var label = roseGraph.append("g")
-		    .attr("id", "label")
-		    .style("fill", "navy");
-
-   label.append("text")
-   		.style("font-size", "15px")
-	  .append("textPath")
-	    .attr("xlink:href", "#backArc")
-	    .text(categories(i));
 
 	for (var i = 0; i < 20; i++) {
 	  arc = d3.arc()
@@ -59,24 +59,21 @@ function createRose(dataset){
 	    })
 	    .style("stroke", "#ffffff")
 	    .style("stroke-width", 3);
-
-	  /*if ( i === 4 || i === 9 || i === 14 || i === 19){
 	
-		  var label = roseGraph.append("g")
-		    .attr("id", "label")
-		    .style("fill", "navy");
+	  var label = roseGraph.append("g")
+	    .attr("id", "label")
+	    .style("fill", "navy");
 
-		   label.append("text")
-		   		.style("font-size", "15px")
-			  .append("textPath")
-			    .attr("xlink:href", "#backArc")
-			    .text(categories(i));
+	   label.append("text")
+	   		.style("font-size", "15px")
+		  .append("textPath")
+		    .attr("xlink:href", "#backArc0")
+		    .text(categories(i));
 
-			label.append("use")
-			    .attr("xlink:href", "#backArc")
-			    .style("stroke", "black")
-			    .style("fill", "none");
-		}*/
+		label.append("use")
+		    .attr("xlink:href", "#backArc")
+		    .style("stroke", "black")
+		    .style("fill", "none");
 
 	}
 	
@@ -104,16 +101,16 @@ function createRose(dataset){
 	    
 	    });*/
 
+
 	    /*var label = roseGraph.append("g")
 		    .attr("id", "label")
 		    .style("fill", "navy");
-*/
+
 	   label.append("text")
 	   		.data(categories)
 	   		.style("font-size", "15px")
 		  .append("textPath")
-		    .attr("xlink:href", function(d){ return "#backArc"+ (i + 4);})
-		    .text(categories(i));
-		  
-	  }
+		    .attr("xlink:href", "#backArc0")
+		    .text(categories(i));*/
+		  }
 }
