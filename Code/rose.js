@@ -1,5 +1,8 @@
 // https://jsfiddle.net/forwardsprint/wrgtj1nL/ (rose chart)
 // http://bl.ocks.org/ChandrakantThakkarDigiCorp/c8ce360f8bc896ffa6c16d30a4cd026b (labels rose chart)
+// add dropdown to line chart with use in specific category.
+// change death rate to survival rate.
+
 function createRose(dataset){
 	
 	var value = [],

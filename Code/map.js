@@ -1,5 +1,5 @@
 	
-function createMap(data){
+function createMap(mapData, soilData, sliderYear){
 
 	var	width		= 400,
 	    height		= 400;
@@ -43,20 +43,28 @@ function createMap(data){
 	
 
 	// setting scales accoring to json file of continent
-	projection.fitSize([width, height], data);
+	projection.fitSize([width, height], mapData);
+
+	function colorMap(regionName){
+			console.log(regionName)
+	}
+
+	var color = d3.scaleLinear()
+    .domain([-1, 0, 1])
+    .range(["red", "white", "green"]);
 
 	// add countries to map with country name as id
 	// calling tooltips on hover
 	// adding on click function to select scatters
 
 	svg.selectAll("path")
-		.data(data.features)
+		.data(mapData.features)
 		.enter()
 		.append("path")
 		.attr("d", path)
-		.attr("id", function(d) { return d.properties.admin })
+		.attr("id", function(d) { return d.properties.name })
 		.attr("stroke", "yellow")
-		.attr("fill", "black")
+		.attr("fill", function(d) { return colorMap(d.properties.name)})
 		.on("mousemove", showTooltip)
   		.on("mouseout",  function(d,i) {
       	tooltip.classed("hidden", true);

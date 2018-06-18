@@ -1,13 +1,13 @@
 //https://bl.ocks.org/johnwalley/e1d256b81e51da68f7feb632a53c3518 (sliders)
 window.onload = function() {
 
-winterDeath = "Data/winterDeath.json";
-soilUse = "Data/soilUse.json";
-tempData = "Data/tempData.json";
-specificPest = "Data/specificPest.json";
-winterDeathUS = "Data/winterDeathUS.json";
-mapDutch = "Data/provinces.geojson";
-pest = "Data/pest.json"
+var winterDeath = "Data/winterDeath.json",
+soilUse = "Data/soilUse.json",
+tempData = "Data/tempData.json",
+specificPest = "Data/specificPest.json",
+winterDeathUS = "Data/winterDeathUS.json",
+mapDutch = "Data/provinces.geojson",
+pest = "Data/pest.json";
 
 d3.queue()
   .defer(d3.request, winterDeath)
@@ -23,13 +23,13 @@ d3.queue()
 function callback(error, response) {
 	if (error) throw error;
 
-	winterDeathNL = JSON.parse(response[0].responseText)
-	soilUse = JSON.parse(response[1].responseText)
-	tempData = JSON.parse(response[2].responseText)
-	specificPest = JSON.parse(response[3].responseText)
-	winterDeathUS = JSON.parse(response[4].responseText)
-	mapDutch = JSON.parse(response[5].responseText)
-	pest = JSON.parse(response[6].responseText)
+	winterDeathNL = JSON.parse(response[0].responseText);
+	soilUse = JSON.parse(response[1].responseText);
+	tempData = JSON.parse(response[2].responseText);
+	specificPest = JSON.parse(response[3].responseText);
+	winterDeathUS = JSON.parse(response[4].responseText);
+	mapDutch = JSON.parse(response[5].responseText);
+	pest = JSON.parse(response[6].responseText);
 
 	years = winterDeathNL["Winter bee death in the Netherlands"]["0"]
 	death = Object.values(years)
@@ -87,7 +87,7 @@ function callback(error, response) {
 	console.log(roseData)
 
 	//console.log(linesData)
-	createMap(mapDutch);
+	createMap(mapDutch, soilUse);
 
 	//console.log(roseData)
 	createRose(roseData);
