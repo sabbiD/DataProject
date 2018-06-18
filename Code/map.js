@@ -1,5 +1,9 @@
 	
-function createMap(mapData, soilData, sliderYear){
+function createMap(mapData, soilData){
+
+	//var year = document.getElementById('value3').innerHTML;
+
+	console.log(soilData)
 
 	var	width		= 400,
 	    height		= 400;
@@ -46,12 +50,29 @@ function createMap(mapData, soilData, sliderYear){
 	projection.fitSize([width, height], mapData);
 
 	function colorMap(regionName){
-			console.log(regionName)
+		
+		var year = document.getElementById('value3').innerHTML;
+
+		var limit = soilData[regionName][year]
+
+		var total = parseInt(limit[0]) + parseInt(limit[1]);
+
+		limit = parseInt(limit[1]) / total 
+
+		var test = Object.values(soilData[regionName])
+
+		console.log(limit) 
+
+		var color = d3.scaleLinear()
+	    .domain([0, 0.1, 0.2])
+	    .range(["red", "white", "green"])
+	    .interpolate(d3.interpolateRgb)
+
+	    return color(limit);
+
 	}
 
-	var color = d3.scaleLinear()
-    .domain([-1, 0, 1])
-    .range(["red", "white", "green"]);
+	
 
 	// add countries to map with country name as id
 	// calling tooltips on hover
@@ -63,7 +84,7 @@ function createMap(mapData, soilData, sliderYear){
 		.append("path")
 		.attr("d", path)
 		.attr("id", function(d) { return d.properties.name })
-		.attr("stroke", "yellow")
+		.attr("stroke", "black")
 		.attr("fill", function(d) { return colorMap(d.properties.name)})
 		.on("mousemove", showTooltip)
   		.on("mouseout",  function(d,i) {

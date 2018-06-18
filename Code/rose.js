@@ -19,70 +19,48 @@ function createRose(dataset){
 	var arc;
 
 	var categories = d3.scaleOrdinal().range(["Insects and mites", "Funghi and bacteria", "Weeds", "Other"])
-	.domain([5, 9, 14, 19])
+	.domain([5, 9, 14, 19]);
 
 	var pie = d3.pie()
 	  .sort(null)
-	  /*.value(function(d) {
+/*	  .value(function(d) {
 	    return d;
-	  });*/
-
+	  });
+*/
 	var roseGraph = d3.select("#containerRose").append("svg")
 	  .attr("width", width)
 	  .attr("height", height)
 	  .append("g")
 	  .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
 
-	 /*var label = roseGraph.append("g")
-		    .attr("id", "label")
-		    .style("fill", "navy");
-*/
-   /*label.append("text")
-   		.style("font-size", "15px")
-	  .append("textPath")
-	    .attr("xlink:href", "#arc")
-	    .text(categories(i));*/
-
 	 var g = roseGraph.selectAll(".arc")
 	  .data(pie(data))
 	  .enter().append("g")
 	  .attr("class", "arc");
 
+
 	for (var i = 0; i < 20; i++) {
+	  
 	  arc = d3.arc()
 	    .outerRadius(radius)
 	    .innerRadius(radius - 4);
 	  radius = radius - 4;
 
 	  g.append("path")
-	  	.attr("id", "backArc" + i)
+	  	.attr("id", function(d){ return "backArc" + i + d.index } )
 	    .attr("d", arc)
 	    .style("fill", function(d) {
 	      return color(d);
 	    })
 	    .style("stroke", "#ffffff")
 	    .style("stroke-width", 3);
-	
-	  var label = roseGraph.append("g")
-	    .attr("id", "label")
-	    .style("fill", "navy");
-
-	   label.append("text")
-	   		.style("font-size", "15px")
-		  .append("textPath")
-		    .attr("xlink:href", "#backArc0")
-		    .text(categories(i));
-
-		label.append("use")
-		    .attr("xlink:href", "#backArc")
-		    .style("stroke", "black")
-		    .style("fill", "none");
-
 	}
-	
+
 	var startAngle = 0;
 	for (var i = 1; i < 5; i++) {
 	  
+	  var labelSpace = ["#backArc00", "#backArc01", "#backArc02", "#backArc03"];
+
 	  arc = d3.arc()
 	    .innerRadius(0)
 	    .outerRadius(radius + (value[0][i] * 100) / 8)
@@ -104,16 +82,15 @@ function createRose(dataset){
 	    
 	    });*/
 
-
-	    /*var label = roseGraph.append("g")
+	    var label = roseGraph.append("g")
 		    .attr("id", "label")
 		    .style("fill", "navy");
 
 	   label.append("text")
-	   		.data(categories)
+	   		.data(labelSpace)
 	   		.style("font-size", "15px")
 		  .append("textPath")
-		    .attr("xlink:href", "#backArc0")
-		    .text(categories(i));*/
+		    .attr("xlink:href", labelSpace[i - 1])
+		    .text(categories(i));
 		  }
 }

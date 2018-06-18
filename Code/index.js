@@ -50,9 +50,10 @@ function callback(error, response) {
 	deathLines = [],
 	pestLines =  [],
 	nameList = [],
+	soilData = [],
 	roseData = []
 
-	for (var i = 0; i < years.length - 4;i++){
+	for (var i = 0; i < years.length - 4; i++){
 			
 			// Data points with base line 2006
 			deathLines.push({
@@ -81,13 +82,27 @@ function callback(error, response) {
 
 	}
 
+	// adjust data for map
+	for (var i = 0; i < 25; i+= 2){
+			var yearData = [];
+		
+		for (var j = 2006; j < 2016; j++){
+
+			yearData[j] = [ soilUse.soilUse[i][j],
+				soilUse.soilUse[i+ 1][j]]
+			}
+		
+		soilData[soilUse.soilUse[i].Regio] =  yearData;
+		
+	}
+
+	//console.log(soilData)
 		
 	roseData.push(pest)
 	linesData.push(tempLines, deathLines, pestLines)
-	console.log(roseData)
+	//console.log(roseData)
 
 	//console.log(linesData)
-	createMap(mapDutch, soilUse);
 
 	//console.log(roseData)
 	createRose(roseData);
@@ -97,28 +112,28 @@ function callback(error, response) {
 
 	var data3 = d3.range(0, 10).map(function (d) { return new Date(2006 + d, 10, 3); });
 
-	  var slider3 = d3.sliderHorizontal()
-	    .min(d3.min(data3))
-	    .max(d3.max(data3))
-	    .step(1000 * 60 * 60 * 24 * 365)
-	    .width(400)
-	    .tickFormat(d3.timeFormat('%Y'))
-	    .tickValues(data3)
-	    .on('onchange', val => {
-	      d3.select("p#value3").text(d3.timeFormat('%Y')(val));
-	    });
+  var slider3 = d3.sliderHorizontal()
+    .min(d3.min(data3))
+    .max(d3.max(data3))
+    .step(1000 * 60 * 60 * 24 * 365)
+    .width(400)
+    .tickFormat(d3.timeFormat('%Y'))
+    .tickValues(data3)
+    .on('onchange', val => {
+      d3.select("p#value3").text(d3.timeFormat('%Y')(val));
+    });
 
-	  var g = d3.select("div#slider3").append("svg")
-	    .attr("width", 500)
-	    .attr("height", 100)
-	    .append("g")
-	    .attr("transform", "translate(30,30)");
+  var g = d3.select("div#slider3").append("svg")
+    .attr("width", 500)
+    .attr("height", 100)
+    .append("g")
+    .attr("transform", "translate(30,30)");
 
-	  g.call(slider3);
+  g.call(slider3);
 
-	  d3.select("p#value3").text(d3.timeFormat('%Y')(slider3.value()));
-	  d3.select("a#setValue3").on("click", () => slider3.value(new Date(2007, 11, 17)));
+  d3.select("p#value3").text(d3.timeFormat('%Y')(slider3.value()));
+  d3.select("a#setValue3").on("click", () => slider3.value(new Date(2007, 11, 17)));
 
-
+  createMap(mapDutch, soilData);
 	}
 }
