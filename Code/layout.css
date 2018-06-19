@@ -1,5 +1,6 @@
 #container {
 	width: 400px;
+	height: 200px;
 	margin-left: 100px;
 	float:left;
 	margin-top: 20px;
@@ -17,7 +18,7 @@
 
 #containerRose {
 	float:right;
-	
+
 }
 .d3-tip {
   line-height: 1;
@@ -58,3 +59,8 @@ path:hover {
 	shape-rendering: crispEdges;
 }
 
+rect.colorLegend_swatch,
+rect.linearLegend {
+  stroke: #000;
+  stroke-width: 0.5px;
+  }

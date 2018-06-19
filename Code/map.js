@@ -1,12 +1,15 @@
-	
+// http://blockbuilder.org/SpaceActuary/69e7f74035787955bcf9 (for legend)
+
 function createMap(mapData, soilData){
 
 	//var year = document.getElementById('value3').innerHTML;
 
-	console.log(soilData)
+	//console.log(soilData)
 
 	var	width		= 400,
-	    height		= 400;
+	    height		= 400,
+	    steps = 9,
+    	breaks = d3.range(0, steps).map(function(d){ return d / (steps - 1); })
 
 
 	// define map projection
@@ -44,6 +47,11 @@ function createMap(mapData, soilData){
         .html(label)// + "</br>" + income_grp)
 		}
 
+	var blues = ["#f7fbff","#deebf7","#c6dbef","#9ecae1","#6baed6","#4292c6","#2171b5","#08519c","#08306b"];
+
+	var quantize = d3.scaleQuantize()
+	.domain([0.03, 0.15])
+	.range(blues);
 	
 
 	// setting scales accoring to json file of continent
@@ -63,16 +71,62 @@ function createMap(mapData, soilData){
 
 		console.log(limit) 
 
-		var color = d3.scaleLinear()
-	    .domain([0, 0.1, 0.2])
-	    .range(["red", "white", "green"])
-	    .interpolate(d3.interpolateRgb)
-
-	    return color(limit);
+	    return quantize(limit);
 
 	}
 
 	
+	var w = 400, h = 140;
+
+	var key = d3.select("#container")
+		.append("svg")
+		.attr("width", w)
+		.attr("height", h);
+
+	var legend = key.append("defs")
+		.append("svg:linearGradient")
+		.attr("id", "gradient")
+		.attr("x1", "0%")
+		.attr("y1", "100%")
+		.attr("x2", "100%")
+		.attr("y2", "100%")
+		.attr("spreadMethod", "pad");
+
+	legend.append("stop")
+		.attr("offset", "0%")
+		.attr("stop-color", "#f7fbff")
+		.attr("stop-opacity", 1);
+
+	legend.append("stop")
+		.attr("offset", "100%")
+		.attr("stop-color", "#08306b")
+		.attr("stop-opacity", 1);
+
+	key.append("rect")
+		.attr("width", w - 150)
+		.attr("height", h - 120)
+		.style("fill", "url(#gradient)")
+	    .attr("transform", "rotate(0)")
+
+	var y = d3.scaleLinear()
+		.range([0, 250])
+		.domain([0.03, 0.15]);
+
+	var yAxis = d3.axisBottom()
+		.scale(y);
+
+	key.append("g")
+		.attr("class", "y axis")
+		//.attr("transform", "rotate(-65)")
+		.attr("transform", "translate(0,21)")
+		.call(yAxis)
+		.append("text")
+		//.attr("transform", "rotate(0)")
+		//.attr("y", 30)
+		.attr("dy", ".71em")
+		.style("text-anchor", "end")
+		.text("axis title");
+
 
 	// add countries to map with country name as id
 	// calling tooltips on hover
