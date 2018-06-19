@@ -117,12 +117,10 @@ function createMap(mapData, soilData){
 
 	key.append("g")
 		.attr("class", "y axis")
-		//.attr("transform", "rotate(-65)")
 		.attr("transform", "translate(0,21)")
 		.call(yAxis)
 		.append("text")
-		//.attr("transform", "rotate(0)")
-		//.attr("y", 30)
+		.attr("transform", "translate(0,21)")
 		.attr("dy", ".71em")
 		.style("text-anchor", "end")
 		.text("axis title");
