@@ -76,10 +76,11 @@ function createMap(mapData, soilData){
 	}
 
 	
-	var w = 400, h = 140;
+	var w = 275, h = 40;
 
 	var key = d3.select("#container")
 		.append("svg")
+		.attr("class", "key")
 		.attr("width", w)
 		.attr("height", h);
 
@@ -103,28 +104,31 @@ function createMap(mapData, soilData){
 		.attr("stop-opacity", 1);
 
 	key.append("rect")
-		.attr("width", w - 150)
-		.attr("height", h - 120)
+		.attr("id", "legendMap")
+		.attr("width", w - 25)
+		.attr("height", h - 20)
+		.style("stroke", "black")
+		//.style("stroke-width", 2)
+		//.style("stroke-dasharray", ("3, 3"))
 		.style("fill", "url(#gradient)")
 	    .attr("transform", "rotate(0)")
 
-	var y = d3.scaleLinear()
-		.range([0, 250])
-		.domain([0.03, 0.15]);
+	var y = d3.scaleOrdinal()
+		.range([0, 125, 250])
+		.domain([0.03, 0.09, 0.15]);
 
 	var yAxis = d3.axisBottom()
 		.scale(y);
 
 	key.append("g")
 		.attr("class", "y axis")
-		.attr("transform", "translate(0,21)")
-		.call(yAxis)
+		.attr("transform", "translate(0,23)")
+		.call(yAxis.tickFormat(d3.format(".0%")))
 		.append("text")
-		.attr("transform", "translate(0,21)")
-		.attr("dy", ".71em")
-		.style("text-anchor", "end")
-		.text("axis title");
-
+		.attr("transform", "translate(0,23)")
+		.attr("text-anchor", "middle")
+  		.attr("alignment-baseline", "alphabetic")
+		//.style("text-anchor", "end")
 
 	// add countries to map with country name as id
 	// calling tooltips on hover

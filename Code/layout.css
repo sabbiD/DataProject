@@ -1,6 +1,6 @@
 #container {
 	width: 400px;
-	height: 200px;
+	height: 300px;
 	margin-left: 100px;
 	float:left;
 	margin-top: 20px;
@@ -59,8 +59,6 @@ path:hover {
 	shape-rendering: crispEdges;
 }
 
-rect.colorLegend_swatch,
-rect.linearLegend {
-  stroke: #000;
-  stroke-width: 0.5px;
-  }
+.key {
+	margin-left: 50px;
+}

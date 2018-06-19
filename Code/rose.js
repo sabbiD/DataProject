@@ -38,6 +38,31 @@ function createRose(dataset){
 	  .enter().append("g")
 	  .attr("class", "arc");
 
+	 // initialize placing for tooltips
+	var offsetL = document.getElementById('containerRose').offsetLeft + 400 ;
+	var offsetT = document.getElementById('containerRose').offsetTop + 700;
+
+	// initialize tooltips
+	var tooltip = d3.select("#containerRose")
+		.append("div")
+		.attr("class", "tooltip hidden")
+
+	// tooltips with info on map
+	function showTooltip(d, i) {
+		console.log(i)
+	  // info for tooltips
+      var label = value[i];
+      
+      // define content of tooltips
+      var mouse = d3.mouse(roseGraph.node())
+        .map( function(d) { return parseInt(d); } );
+      	 tooltip.classed("hidden", false)
+      	 /*.attr("x", 400)
+      	 .attr("y", 300)*/
+        .attr("style", "left:" + (mouse[0] + offsetL) + "px;top:"+(mouse[1] + offsetT) + "px")
+        .html(label)// + "</br>" + income_grp)
+		}
+
 
 	for (var i = 0; i < 20; i++) {
 	  
@@ -76,11 +101,11 @@ function createRose(dataset){
 	    })
 	    .style("stroke", "#ffffff")
 	    .style("stroke-width", 2)
-	    /*.on("mouseover", function(d) {
-	      
-	      arc.style("fill", "red");
-	    
-	    });*/
+	    .on("mouseover", showTooltip)
+  		.on("mouseout",  function(d,i) {
+      	tooltip.classed("hidden", true);
+   		})
+
 
 	    var label = roseGraph.append("g")
 		    .attr("id", "label")
