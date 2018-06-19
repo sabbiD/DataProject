@@ -39,8 +39,8 @@ function createRose(dataset){
 	  .attr("class", "arc");
 
 	 // initialize placing for tooltips
-	var offsetL = document.getElementById('containerRose').offsetLeft + 400 ;
-	var offsetT = document.getElementById('containerRose').offsetTop + 700;
+	var offsetL = document.getElementById('containerRose').offsetLeft + 200 ;
+	var offsetT = document.getElementById('containerRose').offsetTop + 800;
 
 	// initialize tooltips
 	var tooltip = d3.select("#containerRose")
