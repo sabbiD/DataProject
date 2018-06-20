@@ -119,26 +119,6 @@ function createLines(dataset) {
             .attr("class", "textselected")
             .style("text-anchor", "end")
             .style("font-size", 12)
-
-        /*legend.append("rect")
-          .attr("x", width - 20)
-          .attr("y", function(d, i) {
-            return i * 20;
-          })
-          .attr("width", 10)
-          .attr("height", 10)
-          .style("fill", function(d, i) {
-            return color(d[i]["name"]) ;
-          });
-
-        legend.append("text")
-          .attr("x", width - 8)
-          .attr("y", function(d, i) {
-            return (i * 20) + 9;
-          })
-          .text(function(d, i) {
-            return d[i]["name"];
-          });*/
     
     var mouseG = lineGraph.append("g")
       .attr("class", "mouse-over-effects");
@@ -146,8 +126,9 @@ function createLines(dataset) {
     mouseG.append("path") // this is the black vertical line to follow mouse
       .attr("class", "mouse-line")
       .style("stroke", "black")
-      .style("stroke-width", "0px")
-      .style("opacity", "0");
+      .style("stroke-dasharray", ("10, 10"))
+      .style("stroke-width", "5px")
+      .style("opacity", "0.5");
       
     var lines = document.getElementsByClassName('line');
 

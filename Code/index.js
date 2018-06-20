@@ -105,8 +105,6 @@ function callback(error, response) {
 	//console.log(linesData)
 
 	//console.log(roseData)
-	createRose(roseData);
-
 	var chart = createLines(linesData)
 
 
@@ -121,6 +119,7 @@ function callback(error, response) {
     .tickValues(data3)
     .on('onchange', val => {
       d3.select("p#value3").text(d3.timeFormat('%Y')(val));
+      sliderUpdate();
     });
 
   var g = d3.select("div#slider3").append("svg")
@@ -134,6 +133,14 @@ function callback(error, response) {
   d3.select("p#value3").text(d3.timeFormat('%Y')(slider3.value()));
   d3.select("a#setValue3").on("click", () => slider3.value(new Date(2007, 11, 17)));
 
-  createMap(mapDutch, soilData);
+  function sliderUpdate(){
+  	console.log("wut")
+  	var year = document.getElementById('value3').innerHTML;
+
+  	createMap(mapDutch, soilData, year);
+  	createRose(roseData, year);
+	  }
+	  
+	  sliderUpdate();
 	}
 }

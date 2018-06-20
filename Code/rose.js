@@ -3,7 +3,7 @@
 // add dropdown to line chart with use in specific category.
 // change death rate to survival rate.
 
-function createRose(dataset){
+function createRose(dataset, year){
 	
 	var value = [],
 	data = [1, 1, 1, 1],
@@ -11,8 +11,7 @@ function createRose(dataset){
 	height = 400,
 	radius = 140;
 
-	value.push(Object.values(dataset[0][1996]));
-
+	value.push(Object.values(dataset[0][year]));
 
 	var color = d3.scaleLinear()
 	  .range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]);
@@ -22,11 +21,8 @@ function createRose(dataset){
 	.domain([5, 9, 14, 19]);
 
 	var pie = d3.pie()
-	  .sort(null)
-/*	  .value(function(d) {
-	    return d;
-	  });
-*/
+	  .sort(null);
+
 	var roseGraph = d3.select("#containerRose").append("svg")
 	  .attr("width", width)
 	  .attr("height", height)
@@ -49,9 +45,9 @@ function createRose(dataset){
 
 	// tooltips with info on map
 	function showTooltip(d, i) {
-		console.log(i)
+
 	  // info for tooltips
-      var label = value[i];
+      var label = categories(i);
       
       // define content of tooltips
       var mouse = d3.mouse(roseGraph.node())
@@ -93,7 +89,7 @@ function createRose(dataset){
 	    .endAngle((2 * Math.PI) * (i - 1 + 1) / 4);
 	  startAngle = (2 * Math.PI) * (i - 1 + 1) / 4;
 
-	  roseGraph.append("path")
+	  var wedge = roseGraph.append("path")
 	    .attr("id", "arc")
 	    .attr("d", arc)
 	    .style("fill", function(d) {
@@ -106,7 +102,6 @@ function createRose(dataset){
       	tooltip.classed("hidden", true);
    		})
 
-
 	    var label = roseGraph.append("g")
 		    .attr("id", "label")
 		    .style("fill", "navy");
@@ -117,5 +112,13 @@ function createRose(dataset){
 		  .append("textPath")
 		    .attr("xlink:href", labelSpace[i - 1])
 		    .text(categories(i));
-		  }
+		}
+
+function updateRose() {
+		
+		//Show appropriate data
+		pie.value(function(d, i) { return value[0][i]; })
+		wedge.transition().duration(1000).attr("d",arc);
+	}
+updateRose();
 }
