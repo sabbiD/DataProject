@@ -47,3 +47,18 @@ with csv or tsv data).
 ### Day 4
 - Continued with rose chart and decided to look for other simpler example.
 - Rose chart mostly finished but adding labels to the chunks is difficult.
+
+## Week 3
+
+### Day 1
+- Finish coloring map and adjust data to be used in update function of the map.
+- Fixed adding labels to rose chart.
+
+## Day 2 
+- Added gradient horizontal legend to map.
+- Tried to use gradient colors in regions but decided to not do this eventually because it might not add to the clarity of the map.
+
+## Day 3
+- Found ways to update map and rose with slider but not with a separate update function.
+- Trouble finding a good update function for rose chart with transitions etc.
+
