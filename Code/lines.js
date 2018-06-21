@@ -45,7 +45,7 @@ function createLines(dataset) {
             .data(d)
             .attr("class", "line")
             .style("stroke-width", "2px")
-            .attr("id", function(d){ return d["name"] } )
+            .attr("id", function(d){ console.log(d["name"].trim()); return d["name"];} )
             .attr("d",  multiLine(d))
             .style("stroke", function(d){ return color(d["name"]);});
 
@@ -72,11 +72,6 @@ function createLines(dataset) {
             .style("fill-opacity", .3)
             .style("stroke", "red")
 
-        /*var legend = lineGraph.selectAll("Legend")
-          .data(dataset)
-          .enter()
-          .append("g")
-          .attr("class", "legend");*/
 
         var Legned = d3.select(".legend").append("svg")
             .attr("width", width)
@@ -105,6 +100,7 @@ function createLines(dataset) {
             .attr("y", 280)
             .attr("width", 10)
             .attr("height", 10)
+            .attr("id", function(d, i){ return d[i]["name"] + "rect"})
             .style("fill", function (d, i) {
             return color(d[i]["name"])
         })
@@ -202,4 +198,20 @@ function createLines(dataset) {
             return "translate(" + mouse[0] + "," + pos.y +")";
           });
       });
+
+    console.log(document.getElementsByClassName("dropdown-item")[0].innerText)
+    //.onclick= dropLines
 }
+    function dropLines(name){
+
+      var svg = d3.select("#containerGraph").select("#Temperature Change")//.transition();
+      d3.select("#Pesticide Use").remove()
+      console.log(svg)
+      svg.select("text[id='Pesticide Use']").remove()
+      //.duration(750)
+      //.attr("d", multiLine(data))
+      console.log("yup")
+
+    }
+
+    //dropLines()

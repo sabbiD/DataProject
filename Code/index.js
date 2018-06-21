@@ -134,13 +134,42 @@ function callback(error, response) {
   d3.select("a#setValue3").on("click", () => slider3.value(new Date(2007, 11, 17)));
 
   function sliderUpdate(){
-  	console.log("wut")
   	var year = document.getElementById('value3').innerHTML;
 
   	createMap(mapDutch, soilData, year);
   	createRose(roseData, year);
+
 	  }
 	  
 	  sliderUpdate();
+	  dropLines();
+/*anime({
+  targets: 'div',
+  translateX: 100,
+  easing: [.91,-0.54,.29,1.56]
+});
+*/
+ anime({
+	  targets: '#containerRose',
+	  translateX: [
+	    { value: 100, duration: 1200 },
+	    { value: 0, duration: 800 }
+	  ],
+	  rotate: '1turn',
+	  backgroundColor: '#00',
+	  duration: 2000,
+	  loop: false
+	});
 	}
+
+/*anime({
+  targets: '#containerGraph #line',
+  strokeDashoffset: [anime.setDashoffset, 0],
+  easing: 'easeInOutSine',
+  duration: 1500,
+  delay: function(el, i) { return i * 250 },
+  direction: 'alternate',
+  loop: true
+});
+*/
 }

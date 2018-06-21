@@ -1,23 +1,23 @@
-#container {
+#containerMap {
 	width: 400px;
 	height: 300px;
-	margin-left: 100px;
+	/*margin-left: 100px;
 	float:left;
-	margin-top: 20px;
+	margin-top: 20px;*/
 }
 
 #containerGraph {
-	/*height: 400px;
-	width: 400px;
-	margin-left: 100px;*/
-	float:middle;
-	margin-top: 20px;
+	height: 400px;
+	width: 300px;
+	margin-left: 300px;
+	margin-right:300px;
+	margin-top: 100px;
 	background-color:;
 	margin-bottom: 20px;
 }
 
 #containerRose {
-	float:right;
+	background-color: transparent;
 
 }
 .d3-tip {
@@ -62,3 +62,18 @@ path:hover {
 .key {
 	margin-left: 50px;
 }
+
+.col-sm-2 {
+	margin-right: 300px;
+	margin-left: 300px;
+}
+
+#value3 {
+	font-size: 20px;
+}
+
+body {
+    background-image: url("../doc/honeycomb_white.jpg");
+/*    background-size: 800px 800px;
+*//*    background-repeat: repeat-x;
+*/}

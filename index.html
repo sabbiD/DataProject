@@ -47,27 +47,52 @@
 	<h6 align="center">Bees are dying see <a href="http://www.greenpeace.org/switzerland/Global/international/publications/agriculture/2013/BeesInDecline.pdf">Greenpeace</a>.</h6>
 	<h1></h1>
 
-	<div id="container"></div>
-	<h6>Time example</h6>
-    <div class="row align-items-center">
-      <div class="col-sm-2">
-        <p id="value3"></p>
-      </div>
-      <div class="col-sm">
-        <div id="slider3"></div>
+
+	<div class = "container">
+		<div class="row">
+	    <div class="row align-items-center">
+	      <div class="col-sm-2">
+	         <h6>Time example</h6> </p>	
+	        <div id="slider3"></div>
+	    </div>
+		</div>
+	</div>
+	<div class="row">
+        <div class="col-md-5"><div class="clrclass">	
+        	<div id="containerMap"></div>
+</div></div>
+		<div class="col-md-2"><div class="clrclass">	
+        	<p id="value3" ></p>
+</div></div>
+        <div class="col-md-5"><div class="clrclass">	
+        	<div id="containerRose"></div>
+</div></div>
     </div>
-   	<div class="legend"></div>
-	<div id="containerGraph"></div>
-	<div id="containerRose"></div>
+    <div class="row">
+    	<div id="containerGraph">
+		<div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+	  <button type="button" class="btn btn-success">Options</button>
+	  <div class="btn-group" role="group">
+	    <button id="btnGroupDrop2" type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+	    <div class="dropdown-menu" aria-labelledby="btnGroupDrop2" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 36px, 0px);">
+	      <a class="dropdown-item" href="#">Total Pesticides</a>
+	      <a class="dropdown-item" href="#">Insects and mites</a>
+	      <a class="dropdown-item" href="#">Funghi and bacteria</a>
+	      <a class="dropdown-item" href="#">Weeds</a>
+	      <a class="dropdown-item" href="#">Other</a>
+	    </div>
+	  </div>
+	</div>
+	</div>
+</div>
+</div>
+<div></div>
+	
 	<script type="text/javascript" src="Code/index.js"></script>
 	<script type="text/javascript" src="Code/rose.js"></script>
 	<script type="text/javascript" src="Code/map.js"></script>	
 	<script type="text/javascript" src="Code/lines.js"></script>
-
-	<!-- <script type="text/javascript" src="bar.js"></script>
-	
-	<script type="text/javascript" src="donut.js"></script> -->
-
+	<script src="Code/anime-master/anime.min.js"></script>
 	<div id="bottomText">
 	<footer class="blockquote-footer">Sebile Demirtaş 10548270 UvA 2018</footer>
 	</div>

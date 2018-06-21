@@ -4,14 +4,15 @@
 // change death rate to survival rate.
 
 function createRose(dataset, year){
-	
-	var value = [],
+
+
+	var value,
 	data = [1, 1, 1, 1],
 	width = 400,
 	height = 400,
 	radius = 140;
 
-	value.push(Object.values(dataset[0][year]));
+	value = Object.values(dataset[0][year])
 
 	var color = d3.scaleLinear()
 	  .range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]);
@@ -21,8 +22,12 @@ function createRose(dataset, year){
 	.domain([5, 9, 14, 19]);
 
 	var pie = d3.pie()
+	  .value(function(d) { return d; })
 	  .sort(null);
 
+	d3.select("#containerRose").select("svg")
+    .remove();
+	
 	var roseGraph = d3.select("#containerRose").append("svg")
 	  .attr("width", width)
 	  .attr("height", height)
@@ -35,8 +40,8 @@ function createRose(dataset, year){
 	  .attr("class", "arc");
 
 	 // initialize placing for tooltips
-	var offsetL = document.getElementById('containerRose').offsetLeft + 200 ;
-	var offsetT = document.getElementById('containerRose').offsetTop + 800;
+	var offsetL = document.getElementById('containerRose').offsetLeft;
+	var offsetT = document.getElementById('containerRose').offsetTop;
 
 	// initialize tooltips
 	var tooltip = d3.select("#containerRose")
@@ -45,7 +50,7 @@ function createRose(dataset, year){
 
 	// tooltips with info on map
 	function showTooltip(d, i) {
-
+		//console.log(d, i)
 	  // info for tooltips
       var label = categories(i);
       
@@ -59,7 +64,6 @@ function createRose(dataset, year){
         .html(label)// + "</br>" + income_grp)
 		}
 
-
 	for (var i = 0; i < 20; i++) {
 	  
 	  arc = d3.arc()
@@ -70,27 +74,28 @@ function createRose(dataset, year){
 	  g.append("path")
 	  	.attr("id", function(d){ return "backArc" + i + d.index } )
 	    .attr("d", arc)
-	    .style("fill", function(d) {
+	    .style("fill", "transparent")/*function(d) {
 	      return color(d);
-	    })
-	    .style("stroke", "#ffffff")
+	    })*/
+	    .style("stroke", "transparent")
 	    .style("stroke-width", 3);
 	}
 
 	var startAngle = 0;
 	for (var i = 1; i < 5; i++) {
 	  
+	  // placing of labels
 	  var labelSpace = ["#backArc00", "#backArc01", "#backArc02", "#backArc03"];
 
 	  arc = d3.arc()
 	    .innerRadius(0)
-	    .outerRadius(radius + (value[0][i] * 100) / 8)
+	    .outerRadius(radius + (value[i] * 100) / 8)
 	    .startAngle(startAngle)
 	    .endAngle((2 * Math.PI) * (i - 1 + 1) / 4);
 	  startAngle = (2 * Math.PI) * (i - 1 + 1) / 4;
 
-	  var wedge = roseGraph.append("path")
-	    .attr("id", "arc")
+	  roseGraph.append("path")
+	    .attr("class", "arcs")
 	    .attr("d", arc)
 	    .style("fill", function(d) {
 	      return color(i);
@@ -100,7 +105,7 @@ function createRose(dataset, year){
 	    .on("mouseover", showTooltip)
   		.on("mouseout",  function(d,i) {
       	tooltip.classed("hidden", true);
-   		})
+   		});
 
 	    var label = roseGraph.append("g")
 		    .attr("id", "label")
@@ -113,12 +118,4 @@ function createRose(dataset, year){
 		    .attr("xlink:href", labelSpace[i - 1])
 		    .text(categories(i));
 		}
-
-function updateRose() {
-		
-		//Show appropriate data
-		pie.value(function(d, i) { return value[0][i]; })
-		wedge.transition().duration(1000).attr("d",arc);
 	}
-updateRose();
-}

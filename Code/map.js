@@ -17,24 +17,25 @@
 	var path = d3.geoPath()
 				.projection(projection);
 
-	var svg = d3.select("#container")
+	var svg = d3.select("#containerMap")
 			.append("svg")
 			.attr("width", width)
 			.attr("height", height);
 
 
 	// initialize placing for tooltips
-	var offsetL = document.getElementById('container').offsetLeft+10;
-	var offsetT = document.getElementById('container').offsetTop+10;
+	var offsetL = document.getElementById('containerMap').offsetLeft+10;
+	var offsetT = document.getElementById('containerMap').offsetTop+10;
 
 	// initialize tooltips
-	var tooltip = d3.select("#container")
+	var tooltip = d3.select("#containerMap")
 		.append("div")
 		.attr("class", "tooltip hidden")
 
+	// legend width and height 
 	var w = 275, h = 40;
 
-	var key = d3.select("#container")
+	var key = d3.select("#containerMap")
 		.append("svg")
 		.attr("class", "key")
 		.attr("width", w)
@@ -89,6 +90,7 @@
 	// add countries to map with country name as id
 	// calling tooltips on hover
 	// adding on click function to select scatters
+
 function createMap(mapData, soilData, year){
 	
 	// setting scales accoring to json file of continent
