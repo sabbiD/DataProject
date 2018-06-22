@@ -122,8 +122,8 @@ function createLines(dataset) {
     mouseG.append("path") // this is the black vertical line to follow mouse
       .attr("class", "mouse-line")
       .style("stroke", "black")
-      .style("stroke-dasharray", ("10, 10"))
-      .style("stroke-width", "5px")
+      //.style("stroke-dasharray", ("10, 10"))
+      .style("stroke-width", "3px")
       .style("opacity", "0.5");
       
     var lines = document.getElementsByClassName('line');
