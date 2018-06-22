@@ -3,7 +3,9 @@
 
 function createLines(dataset) {
 
-    //console.log(dataset)
+    datasetFirst = dataset.slice(0, 1, 2)
+    console.log(datasetFirst)
+    console.log(dataset)
     
     // Set the dimensions of the canvas / graph
     var margin = {top: 30, right: 20, bottom: 30, left: 50},
@@ -38,7 +40,7 @@ function createLines(dataset) {
     var color = d3.scaleOrdinal(d3.schemeSet1);  // set the colour scale
 
     // Get the data
-    dataset.forEach(function(d) {
+    datasetFirst.forEach(function(d) {
 
         
         lineGraph.append("path")
@@ -81,7 +83,7 @@ function createLines(dataset) {
         var offset = 80;
         
         var legend = lineGraph.selectAll('.legend')
-            .data(dataset)
+            .data(datasetFirst)
             .enter().append('g')
             .attr("class", "legend")
             .attr("transform", function (d, i) {
@@ -123,7 +125,7 @@ function createLines(dataset) {
       .attr("class", "mouse-line")
       .style("stroke", "black")
       //.style("stroke-dasharray", ("10, 10"))
-      .style("stroke-width", "3px")
+      .style("stroke-width", "2px")
       .style("opacity", "0.5");
       
     var lines = document.getElementsByClassName('line');

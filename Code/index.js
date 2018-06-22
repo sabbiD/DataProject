@@ -48,7 +48,11 @@ function callback(error, response) {
 	var yearLines = [],
 	tempLines = [],
 	deathLines = [],
-	pestLines =  [],
+	pestLinesTotal = [],
+	pestLinesInsects = [],
+	pestLinesWeeds = [],
+	pestLinesFunghi = [],
+	pestLinesOther = [],
 	nameList = [],
 	soilData = [],
 	roseData = []
@@ -72,11 +76,40 @@ function callback(error, response) {
 			})
 
 			// Data points with base line 2006 
-			pestLines.push({
+			pestLinesTotal.push({
 
 				name: "Pesticide Use",
 				x: years[i],
 				y: ((pestTotal[i + 21]["Totaal"] / pestTotal[21]["Totaal"]) - 1) * 100
+			})
+
+			// Data points with base line 2006 
+			pestLinesInsects.push({
+
+				name: "Pesticide Use",
+				x: years[i],
+				y: ((pestTotal[i + 21]["Bestrijding insecten en mijten"] / pestTotal[21]["Bestrijding insecten en mijten"]) - 1) * 100
+			})
+
+			pestLinesWeeds.push({
+
+				name: "Pesticide Use",
+				x: years[i],
+				y: ((pestTotal[i + 21]["Bestrijding onkruiden en loofdoding"] / pestTotal[21]["Bestrijding onkruiden en loofdoding"]) - 1) * 100
+			})
+
+			pestLinesFunghi.push({
+
+				name: "Pesticide Use",
+				x: years[i],
+				y: ((pestTotal[i + 21]["Bestrijding schimmels en bacteriën"] / pestTotal[21]["Bestrijding schimmels en bacteriën"]) - 1) * 100
+			})
+
+			pestLinesOther.push({
+
+				name: "Pesticide Use",
+				x: years[i],
+				y: ((pestTotal[i + 21]["Overige Gewasbescher-mingsmiddelen"] / pestTotal[21]["Overige Gewasbescher-mingsmiddelen"]) - 1) * 100
 			})
 
 
@@ -99,10 +132,10 @@ function callback(error, response) {
 	//console.log(soilData)
 		
 	roseData.push(pest)
-	linesData.push(tempLines, deathLines, pestLines)
+	linesData.push(tempLines, deathLines, pestLinesTotal, pestLinesInsects, pestLinesWeeds, pestLinesFunghi, pestLinesOther)
 	//console.log(roseData)
 
-	//console.log(linesData)
+	console.log(linesData)
 
 	//console.log(roseData)
 	var chart = createLines(linesData)
