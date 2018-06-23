@@ -3,7 +3,8 @@
 
 function createLines(dataset) {
 
-    datasetFirst = dataset.slice(0, 1, 2)
+    // Split total datasets into chunks for options.
+    datasetFirst = dataset.splice(0, 3)
     console.log(datasetFirst)
     console.log(dataset)
     
@@ -47,7 +48,7 @@ function createLines(dataset) {
             .data(d)
             .attr("class", "line")
             .style("stroke-width", "2px")
-            .attr("id", function(d){ console.log(d["name"].trim()); return d["name"];} )
+            .attr("id", function(d){ console.log(d["label"].trim()); return d["label"];} )
             .attr("d",  multiLine(d))
             .style("stroke", function(d){ return color(d["name"]);});
 
@@ -102,7 +103,7 @@ function createLines(dataset) {
             .attr("y", 280)
             .attr("width", 10)
             .attr("height", 10)
-            .attr("id", function(d, i){ return d[i]["name"] + "rect"})
+            .attr("id", function(d, i){ return d[i]["label"] + "rect"})
             .style("fill", function (d, i) {
             return color(d[i]["name"])
         })
@@ -131,7 +132,7 @@ function createLines(dataset) {
     var lines = document.getElementsByClassName('line');
 
     var mousePerLine = mouseG.selectAll('.mouse-per-line')
-      .data(dataset)
+      .data(datasetFirst)
       .enter()
       .append("g")
       .attr("class", "mouse-per-line");
@@ -201,19 +202,21 @@ function createLines(dataset) {
           });
       });
 
-    console.log(document.getElementsByClassName("dropdown-item")[0].innerText)
-    //.onclick= dropLines
-}
+   
     function dropLines(name){
 
-      var svg = d3.select("#containerGraph").select("#Temperature Change")//.transition();
-      d3.select("#Pesticide Use").remove()
-      console.log(svg)
-      svg.select("text[id='Pesticide Use']").remove()
-      //.duration(750)
-      //.attr("d", multiLine(data))
-      console.log("yup")
+      var label = this.getAttribute('id');
+      console.log(label)
+      var svg = d3.select("#containerGraph").select("#totalPest.line").transition()
+      .duration(750)
+      .attr("d", multiLine(dataset[1]))
+      console.log(dataset[0])
 
     }
 
-    //dropLines()
+    document.getElementById("totalPest").onclick=dropLines
+    document.getElementById("pestInsects").onclick=dropLines
+    document.getElementById("pestFunghi").onclick=dropLines
+    document.getElementById("pestWeeds").onclick=dropLines
+    document.getElementById("pestOther").onclick=dropLines
+}

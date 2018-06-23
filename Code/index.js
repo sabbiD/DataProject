@@ -63,6 +63,7 @@ function callback(error, response) {
 			deathLines.push({
 				
 				name: "Winter death rates",
+				label:"deathRate",
 				x: years[i],
 				y: (death[i] / death[0] - 1) * 100
 			})
@@ -71,6 +72,7 @@ function callback(error, response) {
 			tempLines.push({
 
 				name:"Temperature Change",
+				label:"tempChange",
 				x: years[i],
 				y: ((parseFloat(temps[i+11], 1000) / parseFloat(temps[11], 1000)) - 1) * 100
 			})
@@ -79,6 +81,7 @@ function callback(error, response) {
 			pestLinesTotal.push({
 
 				name: "Pesticide Use",
+				label:"totalPest",
 				x: years[i],
 				y: ((pestTotal[i + 21]["Totaal"] / pestTotal[21]["Totaal"]) - 1) * 100
 			})
@@ -87,6 +90,7 @@ function callback(error, response) {
 			pestLinesInsects.push({
 
 				name: "Pesticide Use",
+				label:"pestInsects",
 				x: years[i],
 				y: ((pestTotal[i + 21]["Bestrijding insecten en mijten"] / pestTotal[21]["Bestrijding insecten en mijten"]) - 1) * 100
 			})
@@ -94,6 +98,7 @@ function callback(error, response) {
 			pestLinesWeeds.push({
 
 				name: "Pesticide Use",
+				label:"pestWeeds",
 				x: years[i],
 				y: ((pestTotal[i + 21]["Bestrijding onkruiden en loofdoding"] / pestTotal[21]["Bestrijding onkruiden en loofdoding"]) - 1) * 100
 			})
@@ -101,6 +106,7 @@ function callback(error, response) {
 			pestLinesFunghi.push({
 
 				name: "Pesticide Use",
+				label:"pestFunghi",
 				x: years[i],
 				y: ((pestTotal[i + 21]["Bestrijding schimmels en bacteriën"] / pestTotal[21]["Bestrijding schimmels en bacteriën"]) - 1) * 100
 			})
@@ -108,6 +114,7 @@ function callback(error, response) {
 			pestLinesOther.push({
 
 				name: "Pesticide Use",
+				label:"pestOther",
 				x: years[i],
 				y: ((pestTotal[i + 21]["Overige Gewasbescher-mingsmiddelen"] / pestTotal[21]["Overige Gewasbescher-mingsmiddelen"]) - 1) * 100
 			})
@@ -175,7 +182,6 @@ function callback(error, response) {
 	  }
 	  
 	  sliderUpdate();
-	  dropLines();
 /*anime({
   targets: 'div',
   translateX: 100,
