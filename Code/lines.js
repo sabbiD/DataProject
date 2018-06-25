@@ -22,9 +22,8 @@ function createLines(dataset) {
 
     // Define the axes
     var xAxis = d3.axisBottom(x).scale(x)
-            .tickFormat(function(d){ return d.toString();}).tickSize(-w, 0);
-
-    var yAxis = d3.axisLeft(y).tickFormat(function(d){ return d + "%"}).tickSize(-w)//-570);
+            .tickFormat(function(d){ return d.toString();}).tickSize(-(height + 20));
+    var yAxis = d3.axisLeft(y).tickFormat(function(d){ return d + "%"}).tickSize(-(width+ 20));
 
     // Define the line
     var multiLine = d3.line()   

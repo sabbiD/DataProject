@@ -6,20 +6,26 @@
 function createRose(dataset, year){
 
 
-	var value,
+	var value = Object.values(dataset[0][year]),
 	data = [1, 1, 1, 1],
 	width = 400,
 	height = 400,
 	radius = 140;
 
-	value = Object.values(dataset[0][year])
+	// change values to percentages
+	const reducer = (accumulator, currentValue) => accumulator + currentValue;
+
+	value.forEach(function(i){
+		value[i] = (value[i] / value.reduce(reducer));
+	})
+	console.log(value)
 
 	var color = d3.scaleLinear()
 	  .range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]);
 	var arc;
 
 	var categories = d3.scaleOrdinal().range(["Insects and mites", "Funghi and bacteria", "Weeds", "Other"])
-	.domain([5, 9, 14, 19]);
+	//.domain([5, 9, 14, 19]);
 
 	var pie = d3.pie()
 	  .value(function(d) { return d; })
@@ -49,19 +55,17 @@ function createRose(dataset, year){
 		.attr("class", "tooltip hidden")
 
 	// tooltips with info on map
-	function showTooltip(d, i) {
-		//console.log(d, i)
+	function showTooltip(d) {
+
 	  // info for tooltips
-      var label = categories(i);
-      
+      var label = this.id;
+
       // define content of tooltips
-      var mouse = d3.mouse(roseGraph.node())
-        .map( function(d) { return parseInt(d); } );
+      var mouse = d3.mouse(this)//roseGraph.node())
+        //.map( function(d, i) { return parseInt(d); } );
       	 tooltip.classed("hidden", false)
-      	 /*.attr("x", 400)
-      	 .attr("y", 300)*/
         .attr("style", "left:" + (mouse[0] + offsetL) + "px;top:"+(mouse[1] + offsetT) + "px")
-        .html(label)// + "</br>" + income_grp)
+        .html(label)
 		}
 
 	for (var i = 0; i < 20; i++) {
@@ -95,7 +99,9 @@ function createRose(dataset, year){
 	  startAngle = (2 * Math.PI) * (i - 1 + 1) / 4;
 
 	  roseGraph.append("path")
+	  	.data(value)
 	    .attr("class", "arcs")
+	    .attr("id", function(d){ return categories(i); })
 	    .attr("d", arc)
 	    .style("fill", function(d) {
 	      return color(i);
