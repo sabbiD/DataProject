@@ -7,18 +7,18 @@ function createRose(dataset, year){
 
 
 	var value = Object.values(dataset[0][year]),
+	valuePercent = [],
 	data = [1, 1, 1, 1],
 	width = 400,
 	height = 400,
 	radius = 140;
 
 	// change values to percentages
-	const reducer = (accumulator, currentValue) => accumulator + currentValue;
-
 	value.forEach(function(i){
-		value[i] = (value[i] / value.reduce(reducer));
+		
+		valuePercent.push(i / value[0] * 100);
+	
 	})
-	console.log(value)
 
 	var color = d3.scaleLinear()
 	  .range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]);
@@ -61,8 +61,7 @@ function createRose(dataset, year){
       var label = this.id;
 
       // define content of tooltips
-      var mouse = d3.mouse(this)//roseGraph.node())
-        //.map( function(d, i) { return parseInt(d); } );
+      var mouse = d3.mouse(this)
       	 tooltip.classed("hidden", false)
         .attr("style", "left:" + (mouse[0] + offsetL) + "px;top:"+(mouse[1] + offsetT) + "px")
         .html(label)
@@ -93,15 +92,14 @@ function createRose(dataset, year){
 
 	  arc = d3.arc()
 	    .innerRadius(0)
-	    .outerRadius(radius + (value[i] * 100) / 8)
+	    .outerRadius(radius + (valuePercent[i]))
 	    .startAngle(startAngle)
 	    .endAngle((2 * Math.PI) * (i - 1 + 1) / 4);
 	  startAngle = (2 * Math.PI) * (i - 1 + 1) / 4;
 
 	  roseGraph.append("path")
-	  	.data(value)
 	    .attr("class", "arcs")
-	    .attr("id", function(d){ return categories(i); })
+	    .attr("id", function(d){ return categories(i) + "<br>" +(parseFloat(valuePercent[i]).toFixed(2)) + "%" ; })
 	    .attr("d", arc)
 	    .style("fill", function(d) {
 	      return color(i);
