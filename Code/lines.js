@@ -1,5 +1,8 @@
 // https://codepen.io/dannyhc/pen/WQdmwa?editors=1010 (for horizontal line)
 // https://bl.ocks.org/larsenmtl/e3b8b7c2ca4787f77d78f58d41c3da91 (for mouseover)
+// is het erg als button id en line id hetzelfde zijn?
+// https://bl.ocks.org/jkeohan/b8a3a9510036e40d3a4e (for legend)
+
 
 function createLines(dataset) {
 
@@ -19,9 +22,9 @@ function createLines(dataset) {
 
     // Define the axes
     var xAxis = d3.axisBottom(x).scale(x)
-            .tickFormat(function(d){ return d.toString();});
+            .tickFormat(function(d){ return d.toString();}).tickSize(-w, 0);
 
-    var yAxis = d3.axisLeft(y).tickFormat(function(d){ return d + "%"});
+    var yAxis = d3.axisLeft(y).tickFormat(function(d){ return d + "%"}).tickSize(-w)//-570);
 
     // Define the line
     var multiLine = d3.line()   
@@ -32,8 +35,8 @@ function createLines(dataset) {
     // Adds the svg canvas
     var lineGraph = d3.select("#containerGraph")
         .append("svg")
-            .attr("width", width + margin.left + margin.right)
-            .attr("height", height + margin.top + margin.bottom)
+            .attr("width", width + margin.left + margin.right + 200)
+            .attr("height", height + margin.top + margin.bottom + 200)
         .append("g")
             .attr("transform", 
                  "translate(" + margin.left + "," + margin.top + ")");
@@ -48,10 +51,19 @@ function createLines(dataset) {
             .data(d)
             .attr("class", "line")
             .style("stroke-width", "2px")
-            .attr("id", function(d){ console.log(d["label"].trim()); return d["label"];} )
+            .attr("id", function(d){ return d["label"];} )
             .attr("d",  multiLine(d))
             .style("stroke", function(d){ return color(d["name"]);});
 
+        var points = lineGraph.selectAll('circle.point')
+          .data(d);
+        points.enter().append('circle')
+          .attr("r", 4)
+          .style("stroke", function(d){ return color(d["name"]);})
+          .style("fill", "white")
+          .attr('cx', function(d) { return x(d["x"]) })
+          .attr('cy', function(d) { return y(d["y"]) })
+          .attr("id", function(d) { console.log(d["name"]); return d["name"]; });
        });
 
         
@@ -60,11 +72,26 @@ function createLines(dataset) {
             .attr("class", "axis")
             .attr("transform", "translate(0," + height + ")")
             .call(xAxis);
-            
+
+        lineGraph.append("text")             
+          .attr("transform",
+                "translate(" + (width/2) + " ," + 
+                               (height + margin.top + 20) + ")")
+          .style("text-anchor", "middle")
+          .text("Year");
+ 
         // Add the Y Axis
         lineGraph.append("g")
             .attr("class", "axis")
             .call(yAxis);
+
+        lineGraph.append("text")
+          .attr("transform", "rotate(-90)")
+          .attr("y", 0 - margin.left)
+          .attr("x",0 - (height / 2))
+          .attr("dy", "1em")
+          .style("text-anchor", "middle")
+          .text("Percentages");
 
         // Add horizontal red line at zero point
         lineGraph.append("g")
@@ -75,13 +102,37 @@ function createLines(dataset) {
             .style("fill-opacity", .3)
             .style("stroke", "red")
 
-
-        var Legned = d3.select(".legend").append("svg")
-            .attr("width", width)
-            .attr("height", height - 50)
+        var legend = lineGraph.selectAll('.legend')
+            .data(datasetFirst)
+            .enter().append('g')
+            .attr("class", "legend")
+            .attr("transform", function (d, i) {
+            {
+                return "translate(0," + i * 20 + ")"
+            }
+        })
         
-        var dataL = 0;
-        var offset = 80;
+        legend.append('rect')
+            .attr("x", 540)
+            .attr("y", 0)
+            .attr("width", 10)
+            .attr("height", 10)
+            .style("fill", function (d, i) {
+            return color(d[i]["name"])
+        })
+        
+        legend.append('text')
+            .attr("x", 560)
+            .attr("y", 10)
+        .text(function (d, i) {
+            return d[i]["name"];
+        })
+            .attr("class", "textselected")
+            .style("text-anchor", "start")
+            .style("font-size", 15)
+
+/*        var dataL = 100;
+        var offset = 150;
         
         var legend = lineGraph.selectAll('.legend')
             .data(datasetFirst)
@@ -109,15 +160,18 @@ function createLines(dataset) {
         })
         
         legend.append('text')
-            .attr("x", 100)
-            .attr("y", 280)
+            .attr("x", 70)
+            .attr("y", 0)
             .attr("dy", ".35em")
             .text(function (d, i) {
                 return d[i]["name"]
             })
             .attr("class", "textselected")
-            .style("text-anchor", "end")
-            .style("font-size", 12)
+            .style("text-anchor", "middle")
+            .style("font-size", 15)
+            .style("fill", function (d, i) {
+            return color(d[i]["name"])
+        })*/
     
     var mouseG = lineGraph.append("g")
       .attr("class", "mouse-over-effects");
@@ -131,6 +185,7 @@ function createLines(dataset) {
       
     var lines = document.getElementsByClassName('line');
 
+
     var mousePerLine = mouseG.selectAll('.mouse-per-line')
       .data(datasetFirst)
       .enter()
@@ -139,14 +194,16 @@ function createLines(dataset) {
 
     mousePerLine.append("circle")
       .attr("r", 5)
-      .style("fill", function(d, i) {
+      .style("stroke", function(d, i) {
         return color(d[i]["name"]);
       })
+      .style("fill", "white")
       .style("stroke-width", "1px")
       //.style("opacity", 0.25);
 
     mousePerLine.append("text")
-      .attr("transform", "translate(10,3)");
+      .attr("transform", "translate(10,3)")
+
 
     mouseG.append('svg:rect') // append a rect to catch mouse movements on canvas
       .attr('width', width) // can't catch mouse events on a g element
@@ -206,9 +263,11 @@ function createLines(dataset) {
     function dropLines(name){
 
       var label = this.getAttribute('id');
+      
       console.log(label)
+      
       var svg = d3.select("#containerGraph").select("#totalPest.line").transition()
-      .duration(750)
+      .duration(1000)
       .attr("d", multiLine(dataset[1]))
       console.log(dataset[0])
 

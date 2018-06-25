@@ -80,7 +80,7 @@ function callback(error, response) {
 			// Data points with base line 2006 
 			pestLinesTotal.push({
 
-				name: "Pesticide Use",
+				name: "Total Pesticide Use",
 				label:"totalPest",
 				x: years[i],
 				y: ((pestTotal[i + 21]["Totaal"] / pestTotal[21]["Totaal"]) - 1) * 100
@@ -89,7 +89,7 @@ function callback(error, response) {
 			// Data points with base line 2006 
 			pestLinesInsects.push({
 
-				name: "Pesticide Use",
+				name: "Pesticide Use: Insects and mites",
 				label:"pestInsects",
 				x: years[i],
 				y: ((pestTotal[i + 21]["Bestrijding insecten en mijten"] / pestTotal[21]["Bestrijding insecten en mijten"]) - 1) * 100
@@ -97,7 +97,7 @@ function callback(error, response) {
 
 			pestLinesWeeds.push({
 
-				name: "Pesticide Use",
+				name: "Pesticide Use: Weeds",
 				label:"pestWeeds",
 				x: years[i],
 				y: ((pestTotal[i + 21]["Bestrijding onkruiden en loofdoding"] / pestTotal[21]["Bestrijding onkruiden en loofdoding"]) - 1) * 100
@@ -105,7 +105,7 @@ function callback(error, response) {
 
 			pestLinesFunghi.push({
 
-				name: "Pesticide Use",
+				name: "Pesticide Use: Funghi and bacteria",
 				label:"pestFunghi",
 				x: years[i],
 				y: ((pestTotal[i + 21]["Bestrijding schimmels en bacteriën"] / pestTotal[21]["Bestrijding schimmels en bacteriën"]) - 1) * 100
@@ -113,7 +113,7 @@ function callback(error, response) {
 
 			pestLinesOther.push({
 
-				name: "Pesticide Use",
+				name: "Pesticide Use: Other",
 				label:"pestOther",
 				x: years[i],
 				y: ((pestTotal[i + 21]["Overige Gewasbescher-mingsmiddelen"] / pestTotal[21]["Overige Gewasbescher-mingsmiddelen"]) - 1) * 100

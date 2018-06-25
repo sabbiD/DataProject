@@ -1,10 +1,5 @@
 // http://blockbuilder.org/SpaceActuary/69e7f74035787955bcf9 (for legend)
 
-
-
-
-	//var year = document.getElementById('value3').innerHTML;
-
 	//console.log(soilData)
 
 	var	width		= 400,
@@ -91,6 +86,21 @@
 	// calling tooltips on hover
 	// adding on click function to select scatters
 
+var defs = svg.append('svg:defs');
+
+defs.append("svg:pattern")
+    .attr("id", "stripes")
+    .attr("width", 20)
+    .attr("height", 20)
+    .attr("patternUnits", "userSpaceOnUse")
+    .append("svg:image")
+    .attr("xlink:href", "data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPSc4JyBoZWlnaHQ9JzgnPgogIDxyZWN0IHdpZHRoPSc4JyBoZWlnaHQ9JzgnIGZpbGw9JyNmZmYnLz4KICA8cGF0aCBkPSdNMCAwTDggOFpNOCAwTDAgOFonIHN0cm9rZS13aWR0aD0nMC41JyBzdHJva2U9JyNhYWEnLz4KPC9zdmc+Cg==")
+    .attr("width", 20)
+    .attr("height", 20)
+    .attr("x", 0)
+    .attr("y", 0);
+
+
 function createMap(mapData, soilData, year){
 	
 	// setting scales accoring to json file of continent
@@ -110,6 +120,10 @@ function createMap(mapData, soilData, year){
 		.on("mousemove", showTooltip)
   		.on("mouseout",  function(d,i) {
       	tooltip.classed("hidden", true);
+   		})
+   		.on("click", function (d){
+   			d3.select(this)
+        			.style("fill", "url(#stripes)");
    		})
   }
 
