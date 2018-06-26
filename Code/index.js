@@ -176,18 +176,27 @@ function callback(error, response) {
   function sliderUpdate(){
   	var year = document.getElementById('value3').innerHTML;
 
-  	createMap(mapDutch, soilData, year);
+  	updateMap(mapDutch, soilData, year);
   	createRose(roseData, year);
 
 	  }
 	  
-	  sliderUpdate();
+	  createRose(roseData, 2006)
+	  createMap(mapDutch, soilData, 2006)
 /*anime({
   targets: 'div',
   translateX: 100,
   easing: [.91,-0.54,.29,1.56]
+});*/
+
+
+// on-click scroll to line graph
+$("#pointer-down").click(function()  {
+    $('html, body').animate({
+        scrollTop: $("#containerGraph").offset().top
+    }, 2000);
 });
-*/
+
  anime({
 	  targets: '#containerRose',
 	  translateX: [
@@ -202,13 +211,13 @@ function callback(error, response) {
 	}
 
 /*anime({
-  targets: '#containerGraph #line',
+  targets: '#pointer-down',
   strokeDashoffset: [anime.setDashoffset, 0],
   easing: 'easeInOutSine',
   duration: 1500,
   delay: function(el, i) { return i * 250 },
   direction: 'alternate',
   loop: true
-});
-*/
+});*/
+
 }

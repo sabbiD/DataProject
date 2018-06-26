@@ -23,7 +23,9 @@
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
 	<script src="//d3js.org/topojson.v1.min.js"></script>
 	<script src="https://unpkg.com/d3-simple-slider@0.2.1/build/d3-simple-slider.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
 	<link href="https://fonts.googleapis.com/css?family=Fredericka+the+Great" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 	 <div class="header">
   <h3>Colony Collapse Disorder</h3>
@@ -52,17 +54,15 @@
 
 </head>
 <body>
-
-	<h1></h1>
 	<h2 align="center">Colony Collapse Disorder</h2>
 	<h6 align="center">Bees are dying see <a href="http://www.greenpeace.org/switzerland/Global/international/publications/agriculture/2013/BeesInDecline.pdf">Greenpeace</a>.</h6>
-	<h1></h1>
 
 	<div class = "container-fluid">
+		<div class = "container-overlay">
 		<div class="row">
-	    <div class="row align-items-center">
+	    <div class="slider align-items-center">
 	      <div class="col-sm-2">
-	         <h6>Time example</h6> </p>	
+	         <h4>Choose a year to update charts.</h4> 	
 	        <div id="slider3"></div>
 	    </div>
 		</div>
@@ -78,6 +78,14 @@
         	<div id="containerRose"></div>
 </div></div>
     </div>
+    <div class="row">
+    	<div id="pointer-block">
+    		    	<p> Click to see the changes over the years.</p>
+    		<button class="button-down">
+    		<i class="fa fa-angle-double-down" id="pointer-down" style="font-size:48px;color:yellow"></i>
+    	</button>
+    	</div>
+	</div>
     <div class="row">
     	<div id="containerGraph">
 		<div class="btn-group" role="group" aria-label="Button group with nested dropdown">
@@ -97,8 +105,7 @@
 	</div>
 	</div>
 </div>
-</div>
-<div></div>
+</div></div>
 	
 	<script type="text/javascript" src="Code/index.js"></script>
 	<script type="text/javascript" src="Code/rose.js"></script>

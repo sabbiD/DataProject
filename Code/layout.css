@@ -1,16 +1,16 @@
 #containerMap {
-	width: 400px;
-	height: 300px;
+	width: 600px;
+	height: 500px;
 	/*margin-left: 100px;
 	float:left;
 	margin-top: 20px;*/
 }
 
 #containerGraph {
-	height: 400px;
+	height: 600px;
 	width: 300px;
-	margin-left: 300px;
-	margin-right:300px;
+	margin-left: 15%;
+	margin-right:15%;
 	margin-top: 100px;
 	background-color:;
 	margin-bottom: 20px;
@@ -73,8 +73,7 @@ path:hover {
 }
 
 body {
-	background-color: #e8effa;
-	background-image: url("https://www.transparenttextures.com/patterns/connected.png");
+	background-color: transparent;
 
 }
 
@@ -102,14 +101,6 @@ body {
 }
 
 .header{
-	
-	/*background:
-	radial-gradient(circle farthest-side at 0% 50%,#fb1 23.5%,rgba(240,166,17,0) 0)21px 30px,
-	radial-gradient(circle farthest-side at 0% 50%,#B71 24%,rgba(240,166,17,0) 0)19px 30px,
-	linear-gradient(#fb1 14%,rgba(240,166,17,0) 0, rgba(240,166,17,0) 85%,#fb1 0)0 0,
-	linear-gradient(150deg,#fb1 24%,#B71 0,#B71 26%,rgba(240,166,17,0) 0,rgba(240,166,17,0) 74%,#B71 0,#B71 76%,#fb1 0)0 0,
-	linear-gradient(30deg,#fb1 24%,#B71 0,#B71 26%,rgba(240,166,17,0) 0,rgba(240,166,17,0) 74%,#B71 0,#B71 76%,#fb1 0)0 0,
-	linear-gradient(90deg,#B71 2%,#fb1 0,#fb1 98%,#B71 0%)0 0 #fb1;*/
 	background-image: url(/../doc/bee_real.jpg);
 	background-size:100%;
 	position: relative;
@@ -122,5 +113,50 @@ body {
 h3 {
 	font-family: 'Fredericka the Great', cursive;
 	font-size: 48px;
+
+}
+#pointer-block{
+	margin-left: 40%;
+	margin-right: 40%;
+	position: center;
+}
+#pointer-down{
+	margin-left: 40%;
+	margin-right: 40%;
+}
+
+/* resetting properties of button-down element*/
+.button-down {
+	all: initial;
+  * {
+    all: unset;
+  }
+}
+
+.container-overlay{
+	width: 80%;
+	height:100%;
+	margin-right: 10%;
+	margin-left: 10%;
+	/*background-image: url(/../doc/bee_real.jpg);*/ 
+	/*background-color:transparent /*rgba(255,255,224, 0.9)
+;
+
+ /* Green background with 30% opacity */
+
+
+}
+
+.container-fluid{
+	background-image: url(/../doc/bee-cream.jpg);
+	background-attachment: fixed;
+	background-size:100%;
+
+}
+
+.row{
+	background-color:rgba(119,136,153, 0.5);
+	margin-top: 50px;
+	margin-bottom: 50px;
 
 }

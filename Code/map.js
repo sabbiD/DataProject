@@ -1,6 +1,6 @@
 // http://blockbuilder.org/SpaceActuary/69e7f74035787955bcf9 (for legend)
 
-	//console.log(soilData)
+function createMap(mapData, soilData, year){
 
 	var	width		= 400,
 	    height		= 400;
@@ -17,15 +17,6 @@
 			.attr("width", width)
 			.attr("height", height);
 
-
-	// initialize placing for tooltips
-	var offsetL = document.getElementById('containerMap').offsetLeft+10;
-	var offsetT = document.getElementById('containerMap').offsetTop+10;
-
-	// initialize tooltips
-	var tooltip = d3.select("#containerMap")
-		.append("div")
-		.attr("class", "tooltip hidden")
 
 	// legend width and height 
 	var w = 275, h = 40;
@@ -57,16 +48,17 @@
 
 	key.append("rect")
 		.attr("id", "legendMap")
-		.attr("width", w - 25)
+		.attr("width", w - 35)
 		.attr("height", h - 20)
 		.style("stroke", "black")
 		//.style("stroke-width", 2)
 		//.style("stroke-dasharray", ("3, 3"))
 		.style("fill", "url(#gradient)")
 	    .attr("transform", "rotate(0)")
+	    .attr("transform", "translate(10, 0)")
 
 	var y = d3.scaleOrdinal()
-		.range([0, 125, 250])
+		.range([10, 125, 250])
 		.domain([0.03, 0.09, 0.15]);
 
 	var yAxis = d3.axisBottom()
@@ -86,7 +78,7 @@
 	// calling tooltips on hover
 	// adding on click function to select scatters
 
-var defs = svg.append('svg:defs');
+/*var defs = svg.append('svg:defs');
 
 defs.append("svg:pattern")
     .attr("id", "stripes")
@@ -98,16 +90,15 @@ defs.append("svg:pattern")
     .attr("width", 20)
     .attr("height", 20)
     .attr("x", 0)
-    .attr("y", 0);
+    .attr("y", 0);*/
 
-
-function createMap(mapData, soilData, year){
+	// initialize tooltips
+	var tooltip = d3.select("#containerMap")
+	.append("div")
+	.attr("class", "tooltip hidden")
 	
 	// setting scales accoring to json file of continent
 	projection.fitSize([width, height], mapData);
-	
-	// remove old color
-	svg.selectAll("path").remove();
 
 	svg.selectAll("path")
 		.data(mapData.features)
@@ -121,11 +112,11 @@ function createMap(mapData, soilData, year){
   		.on("mouseout",  function(d,i) {
       	tooltip.classed("hidden", true);
    		})
-   		.on("click", function (d){
+   		/*.on("click", function (d){
    			d3.select(this)
         			.style("fill", "url(#stripes)");
-   		})
-  }
+   		})*/
+}
 
 function colorMap(regionName, soilData, year){
 	
@@ -148,14 +139,49 @@ function colorMap(regionName, soilData, year){
 	// tooltips with info on map
 function showTooltip(d) {
 
-  // info for tooltips
-  label = d.properties.name;
-  
-  // define content of tooltips
-  var mouse = d3.mouse(svg.node())
-    .map( function(d) { return parseInt(d); } );
-  	 tooltip.classed("hidden", false)
-    .attr("style", "left:"+(mouse[0]+offsetL)+"px;top:"+(mouse[1]+offsetT)+"px")
-    .html(label)// + "</br>" + income_grp)
+	// initialize placing for tooltips
+	var offsetL = document.getElementById('containerMap').offsetLeft+10;
+	var offsetT = document.getElementById('containerMap').offsetTop+10;
+
+	var svg = d3.select("#containerMap")
+
+	var tooltip = svg.select(".tooltip")
+
+	// info for tooltips
+	var label = d.properties.name;
+
+	// define content of tooltips
+	var mouse = d3.mouse(svg.node())
+	.map( function(d) { return parseInt(d); } );
+	tooltip.classed("hidden", false)
+	.attr("style", "left:"+(mouse[0]+offsetL)+"px;top:"+(mouse[1]+offsetT)+"px")
+	.html(label)// + "</br>" + income_grp)
 	}
 
+
+
+function updateMap(mapData, soilData, year){
+
+	// remove old color
+	var svg = d3.select("#containerMap").selectAll("path").style("fill", "empty")
+
+
+	// initialize tooltips
+	var tooltip = d3.select("#containerMap")
+		.append("div")
+		.attr("class", "tooltip hidden")
+
+
+	svg
+		.data(mapData.features)
+		.style("stroke", "black")
+		.style("fill", function(d) { return colorMap(d.properties.name, soilData, year)})
+		.on("mousemove", showTooltip)
+  		.on("mouseout",  function(d,i) {
+      	tooltip.classed("hidden", true);
+   		})
+   		/*.on("click", function (d){
+   			d3.select(this)
+        			.style("fill", "url(#stripes)");
+   		})*/
+}
