@@ -39,7 +39,7 @@ function callback(error, response) {
 	//pesticides = Object.values(specificPest["Gewasbeschermingsmiddelen gebruik"])
 	pestTotal = Object.values(pest)
 	
-	//console.log(pest)
+	console.log(pestTotal)
 	//console.log(deathLines)
 	//console.log(temps)
 	//console.log(specificPest)
@@ -89,7 +89,7 @@ function callback(error, response) {
 			// Data points with base line 2006 
 			pestLinesInsects.push({
 
-				name: "Pesticide Use: Insects and mites",
+				name: "Insects and mites",
 				label:"pestInsects",
 				x: years[i],
 				y: ((pestTotal[i + 21]["Bestrijding insecten en mijten"] / pestTotal[21]["Bestrijding insecten en mijten"]) - 1) * 100
@@ -97,7 +97,7 @@ function callback(error, response) {
 
 			pestLinesWeeds.push({
 
-				name: "Pesticide Use: Weeds",
+				name: "Weeds",
 				label:"pestWeeds",
 				x: years[i],
 				y: ((pestTotal[i + 21]["Bestrijding onkruiden en loofdoding"] / pestTotal[21]["Bestrijding onkruiden en loofdoding"]) - 1) * 100
@@ -105,7 +105,7 @@ function callback(error, response) {
 
 			pestLinesFunghi.push({
 
-				name: "Pesticide Use: Funghi and bacteria",
+				name: "Funghi and bacteria",
 				label:"pestFunghi",
 				x: years[i],
 				y: ((pestTotal[i + 21]["Bestrijding schimmels en bacteriën"] / pestTotal[21]["Bestrijding schimmels en bacteriën"]) - 1) * 100
@@ -113,10 +113,10 @@ function callback(error, response) {
 
 			pestLinesOther.push({
 
-				name: "Pesticide Use: Other",
+				name: "Other",
 				label:"pestOther",
 				x: years[i],
-				y: ((pestTotal[i + 21]["Overige Gewasbescher-mingsmiddelen"] / pestTotal[21]["Overige Gewasbescher-mingsmiddelen"]) - 1) * 100
+				y: ((pestTotal[i + 21]["Overige gewasbeschermingsmiddelen"] / pestTotal[21]["Overige gewasbeschermingsmiddelen"]) - 1) * 100
 			})
 
 
@@ -141,8 +141,6 @@ function callback(error, response) {
 	roseData.push(pest)
 	linesData.push(tempLines, deathLines, pestLinesTotal, pestLinesInsects, pestLinesWeeds, pestLinesFunghi, pestLinesOther)
 	//console.log(roseData)
-
-	console.log(linesData)
 
 	//console.log(roseData)
 	var chart = createLines(linesData)

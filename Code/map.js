@@ -112,12 +112,13 @@ defs.append("svg:pattern")
   		.on("mouseout",  function(d,i) {
       	tooltip.classed("hidden", true);
    		})
-   		/*.on("click", function (d){
+   		.on("click", function (d){
    			d3.select(this)
         			.style("fill", "url(#stripes)");
-   		})*/
+   		})
 }
 
+// calculate percentages 
 function colorMap(regionName, soilData, year){
 	
 	var blues = ["#f7fbff","#deebf7","#c6dbef","#9ecae1","#6baed6","#4292c6","#2171b5","#08519c","#08306b"];

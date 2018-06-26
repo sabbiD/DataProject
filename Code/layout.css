@@ -30,9 +30,9 @@
 }
 
 path:hover {
-	fill: green;
-	cursor:pointer;
-			}
+	fill: yellow;
+/*	display: none;
+*/}
 
 .hidden {
     display: none;

@@ -8,9 +8,16 @@ function createLines(dataset) {
 
     // Split total datasets into chunks for options.
     datasetFirst = dataset.splice(0, 3)
-    console.log(datasetFirst)
-    console.log(dataset)
-    
+
+    var newLines = []
+
+    dataset.forEach( function(d, i){
+
+            newLines[d[0]["label"]] = i;
+      
+    })
+
+    console.log(newLines)
     // Set the dimensions of the canvas / graph
     var margin = {top: 30, right: 20, bottom: 30, left: 50},
         width = 600 - margin.left - margin.right,
@@ -23,6 +30,7 @@ function createLines(dataset) {
     // Define the axes
     var xAxis = d3.axisBottom(x).scale(x)
             .tickFormat(function(d){ return d.toString();}).tickSize(-(height + 20));
+    
     var yAxis = d3.axisLeft(y).tickFormat(function(d){ return d + "%"}).tickSize(-(width+ 20));
 
     // Define the line
@@ -62,7 +70,7 @@ function createLines(dataset) {
           .style("fill", "white")
           .attr('cx', function(d) { return x(d["x"]) })
           .attr('cy', function(d) { return y(d["y"]) })
-          .attr("id", function(d) { console.log(d["name"]); return d["name"]; });
+          .attr("id", function(d) { return d["name"] + "dots"; });
        });
 
         
@@ -82,6 +90,7 @@ function createLines(dataset) {
         // Add the Y Axis
         lineGraph.append("g")
             .attr("class", "axis")
+            .attr("id", "Yaxis")
             .call(yAxis);
 
         lineGraph.append("text")
@@ -90,7 +99,7 @@ function createLines(dataset) {
           .attr("x",0 - (height / 2))
           .attr("dy", "1em")
           .style("text-anchor", "middle")
-          .text("Percentages");
+          .text("Percentage change");
 
         // Add horizontal red line at zero point
         lineGraph.append("g")
@@ -130,48 +139,6 @@ function createLines(dataset) {
             .style("text-anchor", "start")
             .style("font-size", 15)
 
-/*        var dataL = 100;
-        var offset = 150;
-        
-        var legend = lineGraph.selectAll('.legend')
-            .data(datasetFirst)
-            .enter().append('g')
-            .attr("class", "legend")
-            .attr("transform", function (d, i) {
-             if (i === 0) {
-                dataL = d.length + offset 
-                return "translate(0,0)"
-            } else { 
-             var newdataL = dataL
-             dataL +=  d.length + offset
-             return "translate(" + (newdataL) + ",0)"
-            }
-        })
-
-        legend.append('rect')
-            .attr("x", 0)
-            .attr("y", 280)
-            .attr("width", 10)
-            .attr("height", 10)
-            .attr("id", function(d, i){ return d[i]["label"] + "rect"})
-            .style("fill", function (d, i) {
-            return color(d[i]["name"])
-        })
-        
-        legend.append('text')
-            .attr("x", 70)
-            .attr("y", 0)
-            .attr("dy", ".35em")
-            .text(function (d, i) {
-                return d[i]["name"]
-            })
-            .attr("class", "textselected")
-            .style("text-anchor", "middle")
-            .style("font-size", 15)
-            .style("fill", function (d, i) {
-            return color(d[i]["name"])
-        })*/
-    
     var mouseG = lineGraph.append("g")
       .attr("class", "mouse-over-effects");
 
@@ -261,14 +228,33 @@ function createLines(dataset) {
    
     function dropLines(name){
 
+      // remove dots and update legend and transition
+      lineGraph.selectAll("#")
       var label = this.getAttribute('id');
+      label = newLines[label]
       
-      console.log(label)
-      
+      var max = []
+
+      dataset[label].forEach( function(i){
+                    max.push(i["y"])
+      })      
+
+      newMax = d3.max(max)
+
+      var y = d3.scaleLinear().domain([-70, newMax]).range([height, 0]);
+
       var svg = d3.select("#containerGraph").select("#totalPest.line").transition()
       .duration(1000)
-      .attr("d", multiLine(dataset[1]))
-      console.log(dataset[0])
+      .attr("d", multiLine(dataset[label]))
+
+      lineGraph.select("#Yaxis")
+      .transition()
+      .call(yAxis)
+
+
+    }
+
+    function updateLegendLines(){
 
     }
 
