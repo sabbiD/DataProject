@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
-	<link rel="stylesheet" href="https://bootswatch.com/4/flatly/bootstrap.min.css">
+	<link rel="stylesheet" href="https://bootswatch.com/4/sketchy/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="Code/layout.css">
 	
 	<script src="https://d3js.org/d3.v4.min.js"></script>
@@ -23,21 +23,32 @@
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
 	<script src="//d3js.org/topojson.v1.min.js"></script>
 	<script src="https://unpkg.com/d3-simple-slider@0.2.1/build/d3-simple-slider.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Fredericka+the+Great" rel="stylesheet">
 
-	 
+	 <div class="header">
+  <h3>Colony Collapse Disorder</h3>
+	</div>
+
 	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-	 	<ul class="nav justify-content-end">
- 		<li class="nav-item">
-	  	<a class="nav-link">Data processing</a>
-		  </li>
-		  <li class="nav-item">
-		  	<a class="nav-link active" href="index.html">Home</a>
-		  </li>
-		  <li class="nav-item">
-		    <a class="nav-link active" href="Code/background.html">Background</a>
-		  </li>
-		</ul>
-	</nav> 
+  <a class="navbar-brand" href="#">Data processing</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation" style="">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarColor01">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="index.html">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="Code/background.html">Background</a>
+      </li>
+      <li class="nav-item active">
+      	<a class="nav-link" href="Code/background.html">Sources</a>
+      </li>
+    </ul>
+  </div>
+</nav>
 
 </head>
 <body>
@@ -46,7 +57,6 @@
 	<h2 align="center">Colony Collapse Disorder</h2>
 	<h6 align="center">Bees are dying see <a href="http://www.greenpeace.org/switzerland/Global/international/publications/agriculture/2013/BeesInDecline.pdf">Greenpeace</a>.</h6>
 	<h1></h1>
-
 
 	<div class = "container-fluid">
 		<div class="row">
@@ -71,10 +81,10 @@
     <div class="row">
     	<div id="containerGraph">
 		<div class="btn-group" role="group" aria-label="Button group with nested dropdown">
-	  <button type="button" class="btn btn-success">Options</button>
+	  <button type="button" class="btn btn-info">Options</button>
 	  <div class="btn-group" role="group">
-	    <button id="btnGroupDrop2" type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
-	    <div class="dropdown-menu" aria-labelledby="btnGroupDrop2" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 36px, 0px);">
+	    <button id="btnGroupDrop3" type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+	    <div class="dropdown-menu" aria-labelledby="btnGroupDrop3" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 36px, 0px);">
 	      <a class="dropdown-item" id="totalPest">Total Pesticides</a>
 	      <a class="dropdown-item" id="pestInsects">Insects and mites</a>
 	      <a class="dropdown-item" id="pestFunghi">Funghi and bacteria</a>
