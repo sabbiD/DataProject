@@ -1,13 +1,17 @@
 // https://codepen.io/dannyhc/pen/WQdmwa?editors=1010 (for horizontal line)
 // https://bl.ocks.org/larsenmtl/e3b8b7c2ca4787f77d78f58d41c3da91 (for mouseover)
-// is het erg als button id en line id hetzelfde zijn?
 // https://bl.ocks.org/jkeohan/b8a3a9510036e40d3a4e (for legend)
 
 
 function createLines(dataset) {
 
+    // make 2 datasets for first drawing of line chart and updating line chart.
+    var datasetNew = dataset.slice();
+
     // Split total datasets into chunks for options.
-    datasetFirst = dataset.splice(0, 3)
+    datasetFirst = dataset.splice(0, 3);
+
+    dataset = datasetNew.splice(2, 5)
 
     var newLines = []
 
@@ -17,7 +21,6 @@ function createLines(dataset) {
       
     })
 
-    console.log(newLines)
     // Set the dimensions of the canvas / graph
     var margin = {top: 30, right: 20, bottom: 30, left: 50},
         width = 600 - margin.left - margin.right,
@@ -25,7 +28,7 @@ function createLines(dataset) {
 
     // Set the ranges
     var x = d3.scaleLinear().domain([2006, 2015]).range([0, width]);
-    var y = d3.scaleLinear().domain([-70, 20]).range([height, 0]);
+    var y = d3.scaleLinear().domain([-70, 30]).range([height, 0]);
 
     // Define the axes
     var xAxis = d3.axisBottom(x).scale(x)
@@ -60,7 +63,8 @@ function createLines(dataset) {
             .style("stroke-width", "2px")
             .attr("id", function(d){ return d["label"];} )
             .attr("d",  multiLine(d))
-            .style("stroke", function(d){ return color(d["name"]);});
+            .style("stroke", function(d){ return color(d["name"]);})
+
 
         var points = lineGraph.selectAll('circle.point')
           .data(d);
@@ -70,13 +74,13 @@ function createLines(dataset) {
           .style("fill", "white")
           .attr('cx', function(d) { return x(d["x"]) })
           .attr('cy', function(d) { return y(d["y"]) })
-          .attr("id", function(d) { return d["name"] + "dots"; });
+          .attr("class", function(d) { return d["label"]; });
        });
 
         
          // Add the X Axis
         lineGraph.append("g")
-            .attr("class", "axis")
+            .attr("class", "x axis")
             .attr("transform", "translate(0," + height + ")")
             .call(xAxis);
 
@@ -89,8 +93,7 @@ function createLines(dataset) {
  
         // Add the Y Axis
         lineGraph.append("g")
-            .attr("class", "axis")
-            .attr("id", "Yaxis")
+            .attr("class", "y axis")
             .call(yAxis);
 
         lineGraph.append("text")
@@ -135,7 +138,7 @@ function createLines(dataset) {
         .text(function (d, i) {
             return d[i]["name"];
         })
-            .attr("class", "textselected")
+            .attr("class", function(d, i) { return d[i]["label"]; })
             .style("text-anchor", "start")
             .style("font-size", 15)
 
@@ -228,35 +231,35 @@ function createLines(dataset) {
    
     function dropLines(name){
 
-      // remove dots and update legend and transition
-      lineGraph.selectAll("#")
+      // get id of option that is clicked 
       var label = this.getAttribute('id');
+
+      // get corresponding data
       label = newLines[label]
+
+      //label names for legend
+      var legendLabels = ["Total Pesticide Use", "Pesticides: Insects and mites", "Pesticides: Funghi and bacteria", "Pesticides: Weeds", "Pesticides: Other"]
       
-      var max = []
+      // update legend with new line label
+      lineGraph.select("text.totalPest").transition().text(legendLabels[label])
 
-      dataset[label].forEach( function(i){
-                    max.push(i["y"])
-      })      
-
-      newMax = d3.max(max)
-
-      var y = d3.scaleLinear().domain([-70, newMax]).range([height, 0]);
-
-      var svg = d3.select("#containerGraph").select("#totalPest.line").transition()
+      // update existing line with new line data
+      var svg = lineGraph.select("#totalPest.line").transition()
       .duration(1000)
+      .ease(d3.easeCircle)
       .attr("d", multiLine(dataset[label]))
 
-      lineGraph.select("#Yaxis")
+      // update existing dots with new line data
+      lineGraph.selectAll("circle.totalPest")
+      .data(dataset[label])
       .transition()
-      .call(yAxis)
-
-
-    }
-
-    function updateLegendLines(){
+      .duration(1000)
+      .ease(d3.easeBounce)
+          .attr('cx', function(d) { return x(d["x"]) })
+          .attr('cy', function(d) { return y(d["y"]) })
 
     }
+
 
     document.getElementById("totalPest").onclick=dropLines
     document.getElementById("pestInsects").onclick=dropLines

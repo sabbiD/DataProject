@@ -25,11 +25,9 @@ function createRose(dataset, year){
 	var arc;
 
 	var categories = d3.scaleOrdinal().range(["Insects and mites", "Funghi and bacteria", "Weeds", "Other"])
-	//.domain([5, 9, 14, 19]);
 
 	var pie = d3.pie()
-	  .value(function(d) { return d; })
-	  .sort(null);
+	  .value(function(d) { return d; });
 
 	d3.select("#containerRose").select("svg")
     .remove();
@@ -46,8 +44,8 @@ function createRose(dataset, year){
 	  .attr("class", "arc");
 
 	 // initialize placing for tooltips
-	var offsetL = document.getElementById('containerRose').offsetLeft;
-	var offsetT = document.getElementById('containerRose').offsetTop;
+	var offsetL = document.getElementById('containerRose').offsetLeft + 100;
+	var offsetT = document.getElementById('containerRose').offsetTop + 100;
 
 	// initialize tooltips
 	var tooltip = d3.select("#containerRose")
@@ -77,9 +75,7 @@ function createRose(dataset, year){
 	  g.append("path")
 	  	.attr("id", function(d){ return "backArc" + i + d.index } )
 	    .attr("d", arc)
-	    .style("fill", "transparent")/*function(d) {
-	      return color(d);
-	    })*/
+	    .style("fill", "transparent")
 	    .style("stroke", "transparent")
 	    .style("stroke-width", 3);
 	}
@@ -104,8 +100,6 @@ function createRose(dataset, year){
 	    .style("fill", function(d) {
 	      return color(i);
 	    })
-	    .style("stroke", "#ffffff")
-	    .style("stroke-width", 2)
 	    .on("mouseover", showTooltip)
   		.on("mouseout",  function(d,i) {
       	tooltip.classed("hidden", true);
@@ -117,7 +111,7 @@ function createRose(dataset, year){
 
 	   label.append("text")
 	   		.data(labelSpace)
-	   		.style("font-size", "15px")
+	   		.style("font-size", "20px")
 		  .append("textPath")
 		    .attr("xlink:href", labelSpace[i - 1])
 		    .text(categories(i));

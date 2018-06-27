@@ -95,20 +95,20 @@ function callback(error, response) {
 				y: ((pestTotal[i + 21]["Bestrijding insecten en mijten"] / pestTotal[21]["Bestrijding insecten en mijten"]) - 1) * 100
 			})
 
-			pestLinesWeeds.push({
-
-				name: "Weeds",
-				label:"pestWeeds",
-				x: years[i],
-				y: ((pestTotal[i + 21]["Bestrijding onkruiden en loofdoding"] / pestTotal[21]["Bestrijding onkruiden en loofdoding"]) - 1) * 100
-			})
-
 			pestLinesFunghi.push({
 
 				name: "Funghi and bacteria",
 				label:"pestFunghi",
 				x: years[i],
 				y: ((pestTotal[i + 21]["Bestrijding schimmels en bacteriën"] / pestTotal[21]["Bestrijding schimmels en bacteriën"]) - 1) * 100
+			})
+
+			pestLinesWeeds.push({
+
+				name: "Weeds",
+				label:"pestWeeds",
+				x: years[i],
+				y: ((pestTotal[i + 21]["Bestrijding onkruiden en loofdoding"] / pestTotal[21]["Bestrijding onkruiden en loofdoding"]) - 1) * 100
 			})
 
 			pestLinesOther.push({
@@ -139,7 +139,7 @@ function callback(error, response) {
 	//console.log(soilData)
 		
 	roseData.push(pest)
-	linesData.push(tempLines, deathLines, pestLinesTotal, pestLinesInsects, pestLinesWeeds, pestLinesFunghi, pestLinesOther)
+	linesData.push(tempLines, deathLines, pestLinesTotal, pestLinesInsects, pestLinesFunghi, pestLinesWeeds, pestLinesOther)
 	//console.log(roseData)
 
 	//console.log(roseData)
@@ -148,28 +148,28 @@ function callback(error, response) {
 
 	var data3 = d3.range(0, 10).map(function (d) { return new Date(2006 + d, 10, 3); });
 
-  var slider3 = d3.sliderHorizontal()
-    .min(d3.min(data3))
-    .max(d3.max(data3))
-    .step(1000 * 60 * 60 * 24 * 365)
-    .width(400)
-    .tickFormat(d3.timeFormat('%Y'))
-    .tickValues(data3)
-    .on('onchange', val => {
-      d3.select("p#value3").text(d3.timeFormat('%Y')(val));
-      sliderUpdate();
-    });
+	  var slider3 = d3.sliderHorizontal()
+	    .min(d3.min(data3))
+	    .max(d3.max(data3))
+	    .step(1000 * 60 * 60 * 24 * 365)
+	    .width(400)
+	    .tickFormat(d3.timeFormat('%Y'))
+	    .tickValues(data3)
+	    .on('onchange', val => {
+	      d3.select("p#value3").text(d3.timeFormat('%Y')(val));
+	      sliderUpdate();
+	    });
 
-  var g = d3.select("div#slider3").append("svg")
-    .attr("width", 500)
-    .attr("height", 100)
-    .append("g")
-    .attr("transform", "translate(30,30)");
+	  var g = d3.select("div#slider3").append("svg")
+	    .attr("width", 500)
+	    .attr("height", 100)
+	    .append("g")
+	    .attr("transform", "translate(30,30)");
 
-  g.call(slider3);
+	  g.call(slider3);
 
-  d3.select("p#value3").text(d3.timeFormat('%Y')(slider3.value()));
-  d3.select("a#setValue3").on("click", () => slider3.value(new Date(2007, 11, 17)));
+	  d3.select("p#value3").text(d3.timeFormat('%Y')(slider3.value()));
+	  d3.select("a#setValue3").on("click", () => slider3.value(new Date(2007, 11, 17)));
 
   function sliderUpdate(){
   	var year = document.getElementById('value3').innerHTML;
