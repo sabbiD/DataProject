@@ -139,11 +139,8 @@ h3 {
 	margin-right: 10%;
 	margin-left: 10%;
 	/*background-image: url(/../doc/bee_real.jpg);*/ 
-	/*background-color:transparent /*rgba(255,255,224, 0.9)
+	/*background-color:transparent /*rgba(255,255,224, 0.9)*/
 ;
-
- /* Green background with 30% opacity */
-
 
 }
 
@@ -155,8 +152,10 @@ h3 {
 }
 
 .row{
-	background-color:rgba(119,136,153, 0.5);
+	background-color:rgba(0,5,5, 0.6);
 	margin-top: 50px;
 	margin-bottom: 50px;
+	shape-rendering: crispEdges;
+
 
 }

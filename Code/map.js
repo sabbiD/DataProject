@@ -51,8 +51,6 @@ function createMap(mapData, soilData, year){
 		.attr("width", w - 35)
 		.attr("height", h - 20)
 		.style("stroke", "black")
-		//.style("stroke-width", 2)
-		//.style("stroke-dasharray", ("3, 3"))
 		.style("fill", "url(#gradient)")
 	    .attr("transform", "rotate(0)")
 	    .attr("transform", "translate(10, 0)")
@@ -72,25 +70,10 @@ function createMap(mapData, soilData, year){
 		.attr("transform", "translate(0,23)")
 		.attr("text-anchor", "middle")
   		.attr("alignment-baseline", "alphabetic")
-		//.style("text-anchor", "end")
 
 	// add countries to map with country name as id
 	// calling tooltips on hover
 	// adding on click function to select scatters
-
-/*var defs = svg.append('svg:defs');
-
-defs.append("svg:pattern")
-    .attr("id", "stripes")
-    .attr("width", 20)
-    .attr("height", 20)
-    .attr("patternUnits", "userSpaceOnUse")
-    .append("svg:image")
-    .attr("xlink:href", "data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPSc4JyBoZWlnaHQ9JzgnPgogIDxyZWN0IHdpZHRoPSc4JyBoZWlnaHQ9JzgnIGZpbGw9JyNmZmYnLz4KICA8cGF0aCBkPSdNMCAwTDggOFpNOCAwTDAgOFonIHN0cm9rZS13aWR0aD0nMC41JyBzdHJva2U9JyNhYWEnLz4KPC9zdmc+Cg==")
-    .attr("width", 20)
-    .attr("height", 20)
-    .attr("x", 0)
-    .attr("y", 0);*/
 
 	// initialize tooltips
 	var tooltip = d3.select("#containerMap")
@@ -107,8 +90,8 @@ defs.append("svg:pattern")
 		.attr("d", path)
 		.attr("id", function(d) { return d.properties.name })
 		.attr("stroke", "black")
-		.attr("fill", function(d) { return colorMap(d.properties.name, soilData, year)})
-		.on("mousemove", showTooltip)
+		.attr("fill", function(d) { return colorMap(d.properties.name, soilData, year)[0]})
+		.on("mousemove", function (d) { return showTooltip(d.properties.name, soilData, year) })
   		.on("mouseout",  function(d,i) {
       	tooltip.classed("hidden", true);
    		})
@@ -123,22 +106,25 @@ function colorMap(regionName, soilData, year){
 	
 	var blues = ["#f7fbff","#deebf7","#c6dbef","#9ecae1","#6baed6","#4292c6","#2171b5","#08519c","#08306b"];
 
+	// scale to color regions according to data
 	var quantize = d3.scaleQuantize()
 	.domain([0.03, 0.15])
 	.range(blues);
 
 	var limit = soilData[regionName][year]
 
+	//console.log(limit)
 	var total = parseInt(limit[0]) + parseInt(limit[1]);
+	//console.log(total)
 
 	limit = parseInt(limit[1]) / total 
 
-    return quantize(limit);
+    return [quantize(limit) , limit * 100];
 
 }
 
 	// tooltips with info on map
-function showTooltip(d) {
+function showTooltip(name, soilData, year) {
 
 	// initialize placing for tooltips
 	var offsetL = document.getElementById('containerMap').offsetLeft+10;
@@ -148,15 +134,14 @@ function showTooltip(d) {
 
 	var tooltip = svg.select(".tooltip")
 
-	// info for tooltips
-	var label = d.properties.name;
+	var valueRegion = colorMap(name, soilData, year)[1]
 
 	// define content of tooltips
 	var mouse = d3.mouse(svg.node())
 	.map( function(d) { return parseInt(d); } );
 	tooltip.classed("hidden", false)
 	.attr("style", "left:"+(mouse[0]+offsetL)+"px;top:"+(mouse[1]+offsetT)+"px")
-	.html(label)// + "</br>" + income_grp)
+	.html(name + "</br>" + parseFloat(valueRegion).toFixed(2) + "%")
 	}
 
 
@@ -176,8 +161,8 @@ function updateMap(mapData, soilData, year){
 	svg
 		.data(mapData.features)
 		.style("stroke", "black")
-		.style("fill", function(d) { return colorMap(d.properties.name, soilData, year)})
-		.on("mousemove", showTooltip)
+		.style("fill", function(d) { return colorMap(d.properties.name, soilData, year)[0]; })
+		.on("mousemove", function (d) { return showTooltip(d.properties.name, soilData, year); })
   		.on("mouseout",  function(d,i) {
       	tooltip.classed("hidden", true);
    		})

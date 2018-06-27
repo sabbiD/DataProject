@@ -36,14 +36,8 @@ function callback(error, response) {
 	years = Object.keys(years)
 	temps = Object.values(tempData["Temperatuur Midden-Nederland"])["0"]
 	temps = Object.values(temps)
-	//pesticides = Object.values(specificPest["Gewasbeschermingsmiddelen gebruik"])
 	pestTotal = Object.values(pest)
 	
-	console.log(pestTotal)
-	//console.log(deathLines)
-	//console.log(temps)
-	//console.log(specificPest)
-
 	var linesData = []
 	var yearLines = [],
 	tempLines = [],
@@ -132,60 +126,52 @@ function callback(error, response) {
 				soilUse.soilUse[i+ 1][j]]
 			}
 		
+		// used to calculate percentage of data
 		soilData[soilUse.soilUse[i].Regio] =  yearData;
 		
 	}
-
-	//console.log(soilData)
 		
 	roseData.push(pest)
 	linesData.push(tempLines, deathLines, pestLinesTotal, pestLinesInsects, pestLinesFunghi, pestLinesWeeds, pestLinesOther)
-	//console.log(roseData)
 
-	//console.log(roseData)
 	var chart = createLines(linesData)
 
 
-	var data3 = d3.range(0, 10).map(function (d) { return new Date(2006 + d, 10, 3); });
+	var data = d3.range(0, 10).map(function (d) { return new Date(2006 + d, 10, 3); });
 
-	  var slider3 = d3.sliderHorizontal()
-	    .min(d3.min(data3))
-	    .max(d3.max(data3))
+	  var slider = d3.sliderHorizontal()
+	    .min(d3.min(data))
+	    .max(d3.max(data))
 	    .step(1000 * 60 * 60 * 24 * 365)
 	    .width(400)
 	    .tickFormat(d3.timeFormat('%Y'))
-	    .tickValues(data3)
+	    .tickValues(data)
 	    .on('onchange', val => {
-	      d3.select("p#value3").text(d3.timeFormat('%Y')(val));
+	      d3.select("p#valueSlider").text(d3.timeFormat('%Y')(val));
 	      sliderUpdate();
 	    });
 
-	  var g = d3.select("div#slider3").append("svg")
+	  var g = d3.select("div#slider").append("svg")
 	    .attr("width", 500)
 	    .attr("height", 100)
 	    .append("g")
 	    .attr("transform", "translate(30,30)");
 
-	  g.call(slider3);
+	  g.call(slider);
 
-	  d3.select("p#value3").text(d3.timeFormat('%Y')(slider3.value()));
-	  d3.select("a#setValue3").on("click", () => slider3.value(new Date(2007, 11, 17)));
+	  d3.select("p#valueSlider").text(d3.timeFormat('%Y')(slider.value()));
+	  d3.select("a#setValueSlider").on("click", () => slider.value(new Date(2007, 11, 17)));
 
   function sliderUpdate(){
-  	var year = document.getElementById('value3').innerHTML;
+  	var year = document.getElementById('valueSlider').innerHTML;
 
   	updateMap(mapDutch, soilData, year);
   	createRose(roseData, year);
 
 	  }
 	  
-	  createRose(roseData, 2006)
-	  createMap(mapDutch, soilData, 2006)
-/*anime({
-  targets: 'div',
-  translateX: 100,
-  easing: [.91,-0.54,.29,1.56]
-});*/
+	  createRose(roseData, 2006);
+	  createMap(mapDutch, soilData, 2006);
 
 
 // on-click scroll to line graph
@@ -207,15 +193,5 @@ $("#pointer-down").click(function()  {
 	  loop: false
 	});
 	}
-
-/*anime({
-  targets: '#pointer-down',
-  strokeDashoffset: [anime.setDashoffset, 0],
-  easing: 'easeInOutSine',
-  duration: 1500,
-  delay: function(el, i) { return i * 250 },
-  direction: 'alternate',
-  loop: true
-});*/
 
 }
