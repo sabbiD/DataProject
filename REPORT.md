@@ -51,7 +51,7 @@ To show if the current use of pesticides and/or soil use is having an impact on 
 
 Now I can clearly say that when first making the proposal I did not have a good idea of how long these charts would take to implement.
 A problem that I faced with two of the charts (rose and mindmap) is that I could not find good examples that I could comprehend well enough to implement them myself in this short amount of time. If I would've had more time I definitely would have liked to implement something more similar to [this](http://bl.ocks.org/kgryte/5926740). 
-<br>Also I choose not to change the axis of the line chart when updated, because I think that when also the axis is updated the difference between the categories of pesticide use will not be as clear. Also I would have to draw the other lines again, which would distract from the line that is changed with the dropdown button and is actually important.
+<br>Also I choose not to change the axis of the line chart when updated, because I think that when also the axis is updated the difference between the categories of pesticide use will not be as clear. Also I would have to draw the other lines again, which would distract from the line that is changed with the dropdown button and that is actually important.
 <br>
 
 
