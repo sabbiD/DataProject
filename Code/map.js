@@ -129,6 +129,7 @@ function createMap(mapData, soilData, year){
    			d3.select(this)
         			.style("fill", "url(#stripes)");
    		})*/
+
 }
 
 // Calculate percentage used to color regions

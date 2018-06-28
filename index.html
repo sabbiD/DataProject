@@ -27,6 +27,8 @@
 	<link rel="stylesheet" type="text/css" href="Code/layout.css">
 	<link href="https://fonts.googleapis.com/css?family=Fredericka+the+Great" rel="stylesheet">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="shortcut icon" href="#" />
+
 
 
 	<!-- External libraries -->
@@ -50,9 +52,7 @@
 	<script src="Code/anime-master/anime.min.js"></script>
 	
 	<!-- Title in header -->
-	 <div class="header">
-  		<h3>Colony Collapse Disorder</h3>
-	</div>
+	 <div class="header"></div>
 
 	<!-- Bootstrap navigation bar -->
 	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
@@ -149,40 +149,41 @@
 		<div class="row" id="text1">
 			<p>
 				<h3>Colony Collapse Disorder</h3>
-				This website is designed for a data visualisation project during a programming minor. The aim of this project is to reveal the situation surrounding the bee population in the Netherlands.
+				This website is designed for a data visualisation project as part of the minor Programming at the UvA. The aim of this project is to reveal the situation surrounding the bee population in the Netherlands. There are three visualizations on this page. The first two (map and the rose chart) are linked to the slider and can be updated yearly. The line chart on the bottom of the page shows the changes over the years in factors influencing CCD and the bee population.
+				To read more about CCD, you can click on the background tab in the navigation bar at the top of the page.
 			</p>
-			<h6>Bees are dying see <a href="http://www.greenpeace.org/switzerland/Global/international/publications/agriculture/2013/BeesInDecline.pdf">Greenpeace</a>.</h6>
 
 		<!-- Icon when clicked go to line chart. -->
-		<!-- <button class="button-down">    		    	
+		<button align="center" class="button-down">    		    	
 			<p><h6> Click to see the changes over the years.</h6></p>
-			<i class="fa fa-angle-double-down" id="pointer-down" style="font-size:48px;color:black"></i>
-			</button> -->
+			<i class="fa fa-angle-double-down" id="pointer-down" style="font-size:24px;color:black"></i>
+			</button>
 
 		</div>
 
-
-		<div class="row">
-	    <div class="slider">
-	      	<h4>Choose a year to update charts:</h4>	
-	        <div id="slider"></div>
-		</div>
-	</div>
 
 		<div class="row">
 			<!-- Netherlands map visualisation -->
 	        <div class="col-md-5"><div class="clrclass">
+	        	<div id="mapTitle">Soil Use in the Netherlands</div>
 	        	<div id="containerMap"></div>
 			</div></div>
 
 			<!-- Rose chart visualisation -->
-	        <div class="col-md-4"><div class="clrclass">
-	        	<div id="containerRose">
-	    	</div></div></div>
+	        <div class="col-md-4"><div class="clrclass">	        	
+	        	<div id="roseTitle">Pesticide Use in the Netherlands</div>
+	        	<div id="containerRose"></div>
+	        </div></div>
     	</div>
 
-    <div align="center" class="row">
-    	<p id="lineText">
+    	<div class="row">
+	    <div class="slider">
+	        <div id="slider"></div>
+		</div>
+	</div>
+
+    <div id="lineText" class="row">
+    	<p>
     		<h2>Multiline chart</h2>
     		This line chart shows the change over the years in pesticide use, soil use, and the winter death rates of the bee population.
     		By clicking on the options button you can select different categories of pesticides, to see the specific changes. The base year for this chart is 2006.

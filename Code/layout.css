@@ -11,6 +11,7 @@
 	width: 60%;
 	margin-left: 15%;
 	margin-right:15%;
+	padding-bottom: 3%;
 }
 
 #containerRose {
@@ -117,15 +118,9 @@ h3 {
 	font-size: 48px;
 
 }
-#pointer-block{
-	margin-left: 40%;
-/*	margin-right: 40%;
-*/}
 
 #pointer-down{
 	margin-left: 40%;
-	margin-right: 40%;
-	margin-top: 0px;
 }
 
 /* resetting properties of button-down element*/
@@ -137,7 +132,8 @@ h3 {
 }
 
 .button-down {
-  margin-left: 40%;
+  margin-left: 30%;
+  padding-top: 20px;
 }
 
 .container-overlay{
@@ -166,8 +162,8 @@ h3 {
 }
 
 #text1{
-	padding-top: 10%;
-	margin-left: 20%;
+	padding-top: 5%;
+	margin-left: 10%;
 }
 
 .slider{
@@ -179,12 +175,21 @@ h3 {
 }
 
 #lineText {
-	height:50px;
-	width: 100px;
+/*	height:50px;
+*/	padding-top: 5%;
+	margin-left: 10%;
+	padding-bottom: 3%;
 	padding-right: 20%;
-	padding-left: 20%;
 }
 
-.row{
-	padding-bottom: 5%;
+#roseTitle{
+	padding-left: 90px;
+	font-size: 15px;
+	font-family: 'Fredericka the Great', cursive;
+}
+
+#mapTitle{
+	padding-right: 50px;
+	font-family: 'Fredericka the Great', cursive;
+	font-size:15px;
 }
