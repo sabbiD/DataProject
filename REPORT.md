@@ -6,6 +6,11 @@
 The aim of this project is to describe the situation surrounding the bee population in the Netherlands.
 To show if the current use of pesticides and/or soil use is having an impact on the population.
 
+### Page overview
+
+<img src="https://github.com/SabbiD/DataProject/blob/master/doc/done_3.png" />
+
+
 ### The design
 
 | Function name   | Description  | File name  |
