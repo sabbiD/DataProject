@@ -27,17 +27,12 @@ Through visualizing all the different aspects around the Colony Collapse Disorde
 
   ### Functionalities:
 
-  - A mind map for CCD pointing to the causes of CCD and the related graphs to the causes (Optional).
   - A slider for years that updates the map of the Netherlands of the type of land/soil use and the rose chart showing pesticide use 
     , for that chosen year (MVP). 
-  - A nightingale rose chart displaying the use of pesticides for a chosen year (MVP). 
+  - A rose chart displaying the use of pesticides for a chosen year (MVP). 
   - A line graph showing the development of winter bee deaths, pesticide use, temperature changes, and possibly decline of 
-   soil/land that enables bee health (MVP).
-  - A map of the Netherlands that shows the way in which the land/soil is used for a chosen year (Optional).
-  - A bar chart comparing the situation concerning the determinants of the bee decline in the US and the 
-    Netherlands. Accompanied by a dropdown menu to select different determinants (MVP). 
-  - A pie chart breaking down the pesticides into the ones that are harmfull to bees and those that are not (Optional).
-
+   soil/land that enables bee health (MVP). With a dropdown button to switch between different types of pesticides (MVP).
+  - A map of the Netherlands that shows the way in which the land/soil is used for a chosen year (MVP).
 
 
 ## Prerequisites
@@ -50,33 +45,15 @@ Through visualizing all the different aspects around the Colony Collapse Disorde
   - [Pesticide use from CBS](http://www.clo.nl/indicatoren/nl0015-afzet-gewasbeschermingsmiddelen-in-de-land--en-tuinbouw?i=11-61)
   - [Winter bee deaths from CBS](http://www.clo.nl/indicatoren/nl0572-oorzaken-bijensterfte)
 
-  ### External components:
+  ### External components used:
   
   - d3-tip
   - GeoJSON/topoJSON
   - Bootstrap
-  - Probably more to come...
+  - anime.js
+  
+  All of these libraries have their own copyright licenses. 
 
-  ### Similar visualizations:
-  
-  - [Fertiziler and pesticide use around the world](https://ourworldindata.org/fertilizer-and-pesticides)  
-  This visualizations shows a lot of different graphs concerning pesticide and fertilizer use around the world.
-    I would like to make a similar type of line graph and a map as in this visualization. 
-  - [Nightingale's rose](http://bl.ocks.org/kgryte/5926740)  
-  A basic example of a nightingale's rose chart.
-    I would like to make a similar rose chart.
-  - [Donut Chart](https://datavizcatalogue.com/methods/donut_chart.html)  
-  A basic example of a donut chart.
-  - [Bee Informed](https://bip2.beeinformed.org/loss-map/)  
-  A visualization of the winter colony losses on the US map. I would have liked to make a similar map for the Netherlands, but
-    unfortunately this data for specific regions is not available.
-  
-  
 
-  ### Difficulties:
   
-- Correctly linking visualizations.
-- Being able to explain the story through the visualization without having to use text.
-- Correctly implementing the nightingale's rose chart.
-- Designing an aesthetically pleasing webpage.
-- Smooth transitioning for graphs and charts.
+  
