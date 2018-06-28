@@ -70,7 +70,7 @@ window.onload = function() {
 		soilData = [],
 		roseData = [];
 
-		// Put data in formar appropriate for use in charts
+		// Put data in format appropriate for use in charts
 		for (var i = 0; i < years.length - 4; i++){
 				
 				// Data points with base line 2006
