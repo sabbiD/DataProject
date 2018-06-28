@@ -1,25 +1,26 @@
+/*https://codepen.io/anon/pen/jqYyEZ (for gradient container)
+*/
 #containerMap {
-	width: 600px;
-	height: 500px;
-	/*margin-left: 100px;
-	float:left;
-	margin-top: 20px;*/
+	width: 400px;
+	height: 440px;
+	margin-left: 5%;
 }
 
 #containerGraph {
-	height: 600px;
-	width: 300px;
+	height: 400px;
+	width: 60%;
 	margin-left: 15%;
 	margin-right:15%;
-	margin-top: 100px;
-	background-color:;
-	margin-bottom: 20px;
 }
 
 #containerRose {
-	background-color: transparent;
-
+	width: 400px;
+	height: 440px;
+	margin-left: 15%;
+	margin-right: 5%;
 }
+
+
 .d3-tip {
   line-height: 1;
   font-weight: bold;
@@ -63,12 +64,12 @@ path:hover {
 	margin-left: 50px;
 }
 
-.col-sm-2 {
-	margin-right: 300px;
-	margin-left: 300px;
-}
+/*.col-sm-2 {
+	margin-right: 40%;
+	margin-left: 40%;
+}*/
 
-#value3 {
+#valueSlider {
 	font-size: 20px;
 }
 
@@ -108,6 +109,7 @@ body {
 	min-height: 10rem;
 	width: 100%;
 	overflow: hidden;
+	background-repeat: no-repeat;
 }
 
 h3 {
@@ -117,12 +119,13 @@ h3 {
 }
 #pointer-block{
 	margin-left: 40%;
-	margin-right: 40%;
-	position: center;
-}
+/*	margin-right: 40%;
+*/}
+
 #pointer-down{
 	margin-left: 40%;
 	margin-right: 40%;
+	margin-top: 0px;
 }
 
 /* resetting properties of button-down element*/
@@ -130,7 +133,11 @@ h3 {
 	all: initial;
   * {
     all: unset;
-  }
+  };
+}
+
+.button-down {
+  margin-left: 40%;
 }
 
 .container-overlay{
@@ -138,9 +145,10 @@ h3 {
 	height:100%;
 	margin-right: 10%;
 	margin-left: 10%;
-	/*background-image: url(/../doc/bee_real.jpg);*/ 
-	/*background-color:transparent /*rgba(255,255,224, 0.9)*/
-;
+	background: 
+    linear-gradient(to right, rgba(255,255,224,0) 0%, 
+	rgba(255,255,224,0.9) 10%, rgba(255,255,224,0.9) 50%, 
+	rgba(255,255,224,0.9) 90%, rgba(255,255,224,0) 100%);
 
 }
 
@@ -148,14 +156,35 @@ h3 {
 	background-image: url(/../doc/bee-cream.jpg);
 	background-attachment: fixed;
 	background-size:100%;
+	width:100%;
+	height:100%;
 
 }
 
+.text-muted{
+	background:rgba(255,255,224,0.9);
+}
+
+#text1{
+	padding-top: 10%;
+	margin-left: 20%;
+}
+
+.slider{
+	margin-left: 30%;
+}
+
+.clrclass{
+	margin-left:20%;
+}
+
+#lineText {
+	height:50px;
+	width: 100px;
+	padding-right: 20%;
+	padding-left: 20%;
+}
+
 .row{
-	background-color:rgba(0,5,5, 0.6);
-	margin-top: 50px;
-	margin-bottom: 50px;
-	shape-rendering: crispEdges;
-
-
+	padding-bottom: 5%;
 }

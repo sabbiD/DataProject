@@ -1,25 +1,40 @@
-// https://codepen.io/dannyhc/pen/WQdmwa?editors=1010 (for horizontal line)
-// https://bl.ocks.org/larsenmtl/e3b8b7c2ca4787f77d78f58d41c3da91 (for mouseover)
-// https://bl.ocks.org/jkeohan/b8a3a9510036e40d3a4e (for legend)
+/*
+  UvA minor programmeren
+  Data Project Spring 2018
+  Sebile Demirtas 
+  10548270
 
+  This file contains functions to draw a multi-line chart with a mouseover.
+  In the createLines function the chart is first drawn and the dropLines 
+  function is used to update the chart when a new option in the dropdown 
+  is selected.
+
+  Sources:
+  - https://codepen.io/dannyhc/pen/WQdmwa?editors=1010 (for horizontal line)
+  - https://bl.ocks.org/larsenmtl/e3b8b7c2ca4787f77d78f58d41c3da91 (for mouseover)
+  - https://bl.ocks.org/jkeohan/b8a3a9510036e40d3a4e (for legend)
+
+*/
 
 function createLines(dataset) {
 
-    // make 2 datasets for first drawing of line chart and updating line chart.
+    // Make 2 datasets for first drawing of line chart and updating line chart
     var datasetNew = dataset.slice();
 
-    // Split total datasets into chunks for options.
+    // Split total datasets into chunks for dropdown-options
     datasetFirst = dataset.splice(0, 3);
 
+    // Dataset used for dropLines()
     dataset = datasetNew.splice(2, 5)
 
     var newLines = []
 
+    // Dict used in dropLines() for finding correct data
     dataset.forEach( function(d, i){
 
             newLines[d[0]["label"]] = i;
       
-    })
+    });
 
     // Set the dimensions of the canvas / graph
     var margin = {top: 30, right: 20, bottom: 30, left: 50},
@@ -32,9 +47,16 @@ function createLines(dataset) {
 
     // Define the axes
     var xAxis = d3.axisBottom(x).scale(x)
-            .tickFormat(function(d){ return d.toString();}).tickSize(-(height + 20));
+            .tickFormat(function(d){
+             return d.toString();
+            })
+            .tickSize(-(height + 20));
     
-    var yAxis = d3.axisLeft(y).tickFormat(function(d){ return d + "%"}).tickSize(-(width+ 20));
+    var yAxis = d3.axisLeft(y)
+            .tickFormat(function(d){ 
+              return d + "%";
+            })
+            .tickSize(-(width+ 20));
 
     // Define the line
     var multiLine = d3.line()   
@@ -42,140 +64,146 @@ function createLines(dataset) {
         .y(function(d) { return y(d["y"]); })
         .curve(d3.curveCatmullRom);
         
-    // Adds the svg canvas
+    // Add svg to container
     var lineGraph = d3.select("#containerGraph")
         .append("svg")
             .attr("width", width + margin.left + margin.right + 200)
-            .attr("height", height + margin.top + margin.bottom + 200)
+            .attr("height", height + margin.top + margin.bottom + 50)
         .append("g")
             .attr("transform", 
                  "translate(" + margin.left + "," + margin.top + ")");
     
-    var color = d3.scaleOrdinal(d3.schemeSet1);  // set the colour scale
+    // Color scale 
+    var color = d3.scaleOrdinal()
+    .range(["#a6611a", "#dfc27d", "#80cdc1", "#018571"]);
 
     // Get the data
     datasetFirst.forEach(function(d) {
 
-        
+        // Draw line for every dataset
         lineGraph.append("path")
-            .data(d)
-            .attr("class", "line")
-            .style("stroke-width", "2px")
-            .attr("id", function(d){ return d["label"];} )
-            .attr("d",  multiLine(d))
-            .style("stroke", function(d){ return color(d["name"]);})
+                .data(d)
+                .attr("class", "line")
+                .style("stroke-width", "2px")
+                .attr("id", function(d){ return d["label"];} )
+                .attr("d",  multiLine(d))
+                .style("stroke", function(d){ return color(d["name"]);})
 
-
+        // Append circles on lines for yearly datapoint
         var points = lineGraph.selectAll('circle.point')
           .data(d);
         points.enter().append('circle')
-          .attr("r", 4)
-          .style("stroke", function(d){ return color(d["name"]);})
-          .style("fill", "white")
-          .attr('cx', function(d) { return x(d["x"]) })
-          .attr('cy', function(d) { return y(d["y"]) })
-          .attr("class", function(d) { return d["label"]; });
-       });
+              .attr("r", 4)
+              .style("stroke", function(d){ return color(d["name"]);})
+              .style("fill", "white")
+              .attr('cx', function(d) { return x(d["x"]) })
+              .attr('cy', function(d) { return y(d["y"]) })
+              .attr("class", function(d) { return d["label"]; });
+    });
 
         
-         // Add the X Axis
-        lineGraph.append("g")
-            .attr("class", "x axis")
-            .attr("transform", "translate(0," + height + ")")
-            .call(xAxis);
+     // Add the X Axis
+    lineGraph.append("g")
+        .attr("class", "x axis")
+        .attr("transform", "translate(0," + height + ")")
+        .call(xAxis);
 
-        lineGraph.append("text")             
-          .attr("transform",
-                "translate(" + (width/2) + " ," + 
-                               (height + margin.top + 20) + ")")
-          .style("text-anchor", "middle")
-          .text("Year");
- 
-        // Add the Y Axis
-        lineGraph.append("g")
-            .attr("class", "y axis")
-            .call(yAxis);
+    // Add X axis label
+    lineGraph.append("text")             
+      .attr("transform",
+            "translate(" + (width/2) + " ," + 
+                           (height + margin.top + 20) + ")")
+      .style("text-anchor", "middle")
+      .text("Year");
 
-        lineGraph.append("text")
-          .attr("transform", "rotate(-90)")
-          .attr("y", 0 - margin.left)
-          .attr("x",0 - (height / 2))
-          .attr("dy", "1em")
-          .style("text-anchor", "middle")
-          .text("Percentage change");
+    // Add the Y Axis
+    lineGraph.append("g")
+        .attr("class", "y axis")
+        .call(yAxis);
 
-        // Add horizontal red line at zero point
-        lineGraph.append("g")
-            .attr("transform", "translate(0," + y(0) + ")")
-            .append("line")
-            .attr("x2", width)
-            .style("stroke-dasharray", ("5,3"))
-            .style("fill-opacity", .3)
-            .style("stroke", "red")
+    // Add Y axis label
+    lineGraph.append("text")
+      .attr("transform", "rotate(-90)")
+      .attr("y", 0 - margin.left)
+      .attr("x",0 - (height / 2))
+      .attr("dy", "1em")
+      .style("text-anchor", "middle")
+      .text("Percentage change");
 
-        var legend = lineGraph.selectAll('.legend')
-            .data(datasetFirst)
-            .enter().append('g')
-            .attr("class", "legend")
-            .attr("transform", function (d, i) {
-            {
-                return "translate(0," + i * 20 + ")"
-            }
-        })
-        
-        legend.append('rect')
-            .attr("x", 540)
-            .attr("y", 0)
-            .attr("width", 10)
-            .attr("height", 10)
-            .style("fill", function (d, i) {
-            return color(d[i]["name"])
-        })
-        
-        legend.append('text')
-            .attr("x", 560)
-            .attr("y", 10)
+    // Add horizontal red line at zero point
+    lineGraph.append("g")
+        .attr("transform", "translate(0," + y(0) + ")")
+        .append("line")
+        .attr("x2", width)
+        .style("stroke-dasharray", ("5,3"))
+        .style("fill-opacity", .3)
+        .style("stroke", "red")
+
+    // Add space for legend on svg
+    var legend = lineGraph.selectAll('.legend')
+        .data(datasetFirst)
+        .enter().append('g')
+        .attr("class", "legend")
+        .attr("transform", function (d, i) {
+        {
+            return "translate(0," + i * 20 + ")";
+        }
+    });
+
+    // Append legend rectangles
+    legend.append('rect')
+        .attr("x", 540)
+        .attr("y", 0)
+        .attr("width", 10)
+        .attr("height", 10)
+        .style("fill", function (d, i) {
+        return color(d[i]["name"]);
+    });
+
+    // Append legend text
+    legend.append('text')
+        .attr("x", 560)
+        .attr("y", 10)
         .text(function (d, i) {
             return d[i]["name"];
         })
-            .attr("class", function(d, i) { return d[i]["label"]; })
-            .style("text-anchor", "start")
-            .style("font-size", 15)
+        .attr("class", function(d, i) { return d[i]["label"]; })
+        .style("text-anchor", "start")
+        .style("font-size", 15);
 
     var mouseG = lineGraph.append("g")
       .attr("class", "mouse-over-effects");
 
-    mouseG.append("path") // this is the black vertical line to follow mouse
+    // Append line to follow mouse
+    mouseG.append("path")
       .attr("class", "mouse-line")
       .style("stroke", "black")
-      //.style("stroke-dasharray", ("10, 10"))
       .style("stroke-width", "2px")
       .style("opacity", "0.5");
-      
-    var lines = document.getElementsByClassName('line');
-
-
+    
+    // Append space for mouseover
     var mousePerLine = mouseG.selectAll('.mouse-per-line')
       .data(datasetFirst)
       .enter()
       .append("g")
       .attr("class", "mouse-per-line");
 
+    // Append circles on mouseover
     mousePerLine.append("circle")
       .attr("r", 5)
       .style("stroke", function(d, i) {
         return color(d[i]["name"]);
       })
       .style("fill", "white")
-      .style("stroke-width", "1px")
-      //.style("opacity", 0.25);
+      .style("stroke-width", "1px");
 
+    // Append text to line
     mousePerLine.append("text")
-      .attr("transform", "translate(10,3)")
+      .attr("transform", "translate(10,3)");
 
-
-    mouseG.append('svg:rect') // append a rect to catch mouse movements on canvas
-      .attr('width', width) // can't catch mouse events on a g element
+    // Append rectangles to cath mouse movements on svg
+    mouseG.append('svg:rect')
+      .attr('width', width)
       .attr('height', height)
       .attr('fill', 'none')
       .attr('pointer-events', 'all')
@@ -218,7 +246,7 @@ function createLines(dataset) {
               }
               if (pos.x > mouse[0])      end = target;
               else if (pos.x < mouse[0]) beginning = target;
-              else break; //position found
+              else break;
             }
             
             d3.select(this).select('text')
@@ -231,39 +259,42 @@ function createLines(dataset) {
    
     function dropLines(name){
 
-      // get id of option that is clicked 
+      // Get id of option that is clicked 
       var label = this.getAttribute('id');
 
-      // get corresponding data
-      label = newLines[label]
+      // Get data for chosen line
+      label = newLines[label];
 
-      //label names for legend
-      var legendLabels = ["Total Pesticide Use", "Pesticides: Insects and mites", "Pesticides: Funghi and bacteria", "Pesticides: Weeds", "Pesticides: Other"]
-      
-      // update legend with new line label
-      lineGraph.select("text.totalPest").transition().text(legendLabels[label])
+      // Label names for legend
+      var legendLabels = ["Total Pesticide Use", "Pesticides: Insects and mites", 
+      "Pesticides: Funghi and bacteria", "Pesticides: Weeds", "Pesticides: Other"];
 
-      // update existing line with new line data
+      // Update legend with new line label
+      lineGraph.select("text.totalPest")
+              .transition()
+              .text(legendLabels[label]);
+
+      // Update existing line with new line data
       var svg = lineGraph.select("#totalPest.line").transition()
-      .duration(1000)
-      .ease(d3.easeCircle)
-      .attr("d", multiLine(dataset[label]))
+                .duration(1000)
+                .ease(d3.easeCircle)
+                .attr("d", multiLine(dataset[label]));
 
-      // update existing dots with new line data
+      // Update existing dots with new line data
       lineGraph.selectAll("circle.totalPest")
-      .data(dataset[label])
-      .transition()
-      .duration(1000)
-      .ease(d3.easeBounce)
-          .attr('cx', function(d) { return x(d["x"]) })
-          .attr('cy', function(d) { return y(d["y"]) })
+                .data(dataset[label])
+                .transition()
+                .duration(1000)
+                .ease(d3.easeBounce)
+                .attr('cx', function(d) { return x(d["x"]) })
+                .attr('cy', function(d) { return y(d["y"]) });
 
     }
 
-
-    document.getElementById("totalPest").onclick=dropLines
-    document.getElementById("pestInsects").onclick=dropLines
-    document.getElementById("pestFunghi").onclick=dropLines
-    document.getElementById("pestWeeds").onclick=dropLines
-    document.getElementById("pestOther").onclick=dropLines
+    // Link update function to button elements
+    document.getElementById("totalPest").onclick=dropLines;
+    document.getElementById("pestInsects").onclick=dropLines;
+    document.getElementById("pestFunghi").onclick=dropLines;
+    document.getElementById("pestWeeds").onclick=dropLines;
+    document.getElementById("pestOther").onclick=dropLines;
 }
