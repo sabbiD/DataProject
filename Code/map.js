@@ -125,10 +125,6 @@ function createMap(mapData, soilData, year){
   		.on("mouseout",  function(d,i) {
       	tooltip.classed("hidden", true);
    		});
-   		/*.on("click", function (d){
-   			d3.select(this)
-        			.style("fill", "url(#stripes)");
-   		})*/
 
 }
 

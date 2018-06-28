@@ -1,11 +1,24 @@
-/*https://codepen.io/anon/pen/jqYyEZ (for gradient container)
+/*
+  UvA minor programmeren
+  Data Project Spring 2018
+  Sebile Demirtas 
+  10548270
+
+  This file contains layout of the webpage.
+
+  Sources:
+  - https://codepen.io/anon/pen/jqYyEZ (for gradient container)
+
 */
+
+/* Placing container for map*/
 #containerMap {
 	width: 400px;
 	height: 440px;
 	margin-left: 5%;
 }
 
+/* Placing container for line chart*/
 #containerGraph {
 	height: 400px;
 	width: 60%;
@@ -14,6 +27,7 @@
 	padding-bottom: 3%;
 }
 
+/*Placing container for rose chart*/
 #containerRose {
 	width: 400px;
 	height: 440px;
@@ -22,6 +36,7 @@
 }
 
 
+/* Layout of tooltips*/
 .d3-tip {
   line-height: 1;
   font-weight: bold;
@@ -31,15 +46,17 @@
   position: absolute;
 }
 
+/* Change color when hovered over region*/
 path:hover {
-	fill: yellow;
-/*	display: none;
-*/}
+	fill: lightyellow;
+}
 
+/* Hide tooltips */
 .hidden {
     display: none;
     }
 
+/* Tooltip looks*/
 .tooltip {
 	  color: #222; 
 	  background: #fff; 
@@ -51,32 +68,16 @@ path:hover {
 	  position: absolute;
 }
 
+/* Do not fill line*/
 .line {
 	fill:none;
 }
 
+/* Layout of axis*/
 .axis path,
 .axis line {
 	fill: none;
 	shape-rendering: crispEdges;
-}
-
-.key {
-	margin-left: 50px;
-}
-
-/*.col-sm-2 {
-	margin-right: 40%;
-	margin-left: 40%;
-}*/
-
-#valueSlider {
-	font-size: 20px;
-}
-
-body {
-	background-color: transparent;
-
 }
 
 
@@ -102,6 +103,23 @@ body {
   stroke-opacity: .5;
 }
 
+/* Placing of legend*/
+.key {
+	margin-left: 50px;
+}
+
+/* Font of slider value*/
+#valueSlider {
+	font-size: 20px;
+}
+
+/* Background color of body*/
+body {
+	background-color: transparent;
+
+}
+
+/* Header layout*/
 .header{
 	background-image: url(../Code/Images/bee_real.jpg);
 	background-size:100%;
@@ -113,17 +131,19 @@ body {
 	background-repeat: no-repeat;
 }
 
+/* Add new font besides Bootstrap stylesheet fonts*/
 h3 {
 	font-family: 'Fredericka the Great', cursive;
 	font-size: 48px;
 
 }
 
+/* Placing of button-down icon*/
 #pointer-down{
 	margin-left: 40%;
 }
 
-/* resetting properties of button-down element*/
+/* Resetting bootstrap properties of button-down element*/
 .button-down {
 	all: initial;
   * {
@@ -131,11 +151,13 @@ h3 {
   };
 }
 
+/* Placing of text and button-down element*/
 .button-down {
   margin-left: 30%;
   padding-top: 20px;
 }
 
+/* Layout overlay container*/
 .container-overlay{
 	width: 80%;
 	height:100%;
@@ -148,6 +170,7 @@ h3 {
 
 }
 
+/* Layout bigger container*/
 .container-fluid{
 	background-image: url(../Code/Images/bee-cream.jpg);
 	background-attachment: fixed;
@@ -157,36 +180,43 @@ h3 {
 
 }
 
+/* Text layout*/
 .text-muted{
 	background:rgba(255,255,224,0.9);
 }
 
+/*Placing of text*/
 #text1{
 	padding-top: 5%;
 	margin-left: 10%;
 }
 
+/*Placing of slider*/
 .slider{
 	margin-left: 25%;
 }
 
+/*Placing of column class*/
 .clrclass{
 	margin-left:20%;
 }
 
+
+/* Adding text above line chart */
 #lineText {
-/*	height:50px;
-*/	padding-top: 5%;
+	padding-top: 5%;
 	margin-left: 10%;
 	padding-right: 20%;
 }
 
+/* Add title to rose chart*/
 #roseTitle{
 	padding-left: 90px;
 	font-size: 15px;
 	font-family: 'Fredericka the Great', cursive;
 }
 
+/* Add title to map*/
 #mapTitle{
 	padding-right: 50px;
 	font-family: 'Fredericka the Great', cursive;

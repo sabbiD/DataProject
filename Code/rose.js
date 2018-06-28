@@ -124,17 +124,16 @@ function createRose(dataset, year){
 		roseGraph.append("path")
 			.attr("class", "arcs")
 			.attr("id", function(d){ 
-				return 
-				categories(i) + "<br>" +(parseFloat(valuePercent[i]).toFixed(2)) + "%"; 
+				return categories(i) + "<br>" +(parseFloat(valuePercent[i]).toFixed(2)) + "%"; 
 			})
 			.attr("d", arc)
 			.style("fill", function(d) {
 			  return color(i);
 			})
 			.on("mouseover", showTooltip)
-			.on("mouseout",  function(d,i) {
-			tooltip.classed("hidden", true);
-			});
+				.on("mouseout",  function(d,i) {
+				tooltip.classed("hidden", true);
+				});
 
 		// Add space for labels on svg
 		var label = roseGraph.append("g")
