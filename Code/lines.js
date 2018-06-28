@@ -174,6 +174,9 @@ function createLines(dataset) {
     var mouseG = lineGraph.append("g")
       .attr("class", "mouse-over-effects");
 
+
+    var lines = document.getElementsByClassName('line');
+
     // Append line to follow mouse
     mouseG.append("path")
       .attr("class", "mouse-line")
