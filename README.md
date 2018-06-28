@@ -23,7 +23,7 @@ Through visualizing all the different aspects around the Colony Collapse Disorde
   Beekeepers, farmers, gardeners, honey-lovers, environmentalists, bee-lovers, nature-lovers, and everyone else who is interested in       the wellbeing of the earth.
 
   ### Visual Sketch
-<img src="https://github.com/sabbiD/DataProject/blob/master/doc/blankpage.jpg"/>
+<img src="https://github.com/sabbiD/DataProject/blob/master/doc/done_1.jpg"/>
 
   ### Functionalities:
 
