@@ -3,8 +3,8 @@
 #### Sebile Demirtaş
 ##### 10548270
 
-[See project on Github Pages](https://sabbid.github.io/DataProject/index.html)
-[Link to demo video (in Dutch)](https://drive.google.com/file/d/1mrqIen_i3np9rdxmxs3jAYdGq_iBzcfy/view)
+[See project on Github Pages](https://sabbid.github.io/DataProject/index.html)<br>
+[Link to Demo video (in Dutch)](https://drive.google.com/file/d/1mrqIen_i3np9rdxmxs3jAYdGq_iBzcfy/view)
 
 ## Problem Statement
 
