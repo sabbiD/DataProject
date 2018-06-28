@@ -4,6 +4,7 @@
 ##### 10548270
 
 [See project on Github Pages](https://sabbid.github.io/DataProject/index.html)
+[Link to demo video (in Dutch)](https://drive.google.com/file/d/1mrqIen_i3np9rdxmxs3jAYdGq_iBzcfy/view)
 
 ## Problem Statement
 
@@ -46,6 +47,7 @@ Through visualizing all the different aspects around the Colony Collapse Disorde
   - [Land/ soil use from CBS](http://statline.cbs.nl/Statweb/publication/?DM=SLNL&PA=80780NED&D1=0%2c2-7%2c13-18%2c24%2c50%2c90%2c116%2c156%2c159%2c226%2c321%2c327%2c332%2c364%2c383-384%2c388%2c400-403%2c406%2c409%2c418%2c427%2c444%2c459%2c504%2c512%2c519%2c526%2c538&D2=0&D3=0%2c5%2c10%2c15-16&HDR=G1%2cG2&STB=T&VW=T)
   - [Pesticide use from CBS](http://www.clo.nl/indicatoren/nl0015-afzet-gewasbeschermingsmiddelen-in-de-land--en-tuinbouw?i=11-61)
   - [Winter bee deaths from CBS](http://www.clo.nl/indicatoren/nl0572-oorzaken-bijensterfte)
+  - [Unsplash for background and header images](https://unsplash.com/search/photos/bee)
 
   ### External components used:
   
