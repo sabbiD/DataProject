@@ -103,7 +103,7 @@ body {
 }
 
 .header{
-	background-image: url(Code/Images/bee_real.jpg);
+	background-image: url(/Code/Images/bee_real.jpg);
 	background-size:100%;
 	position: relative;
 	height: 75vh;
@@ -149,7 +149,7 @@ h3 {
 }
 
 .container-fluid{
-	background-image: url(Code/Images/bee-cream.jpg);
+	background-image: url(/Code/Images/bee-cream.jpg);
 	background-attachment: fixed;
 	background-size:100%;
 	width:100%;
